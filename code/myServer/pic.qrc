@@ -1,0 +1,43 @@
+<RCC>
+    <qresource prefix="/">
+        <file>png/bai-lan-close.png</file>
+        <file>png/bai-lan-open.png</file>
+        <file>png/bai-ye-close.png</file>
+        <file>png/bai-ye-open.png</file>
+        <file>png/background.png</file>
+        <file>png/light-close.png</file>
+        <file>png/light-open.png</file>
+        <file>png/fun-close.png</file>
+        <file>png/fun-open.png</file>
+        <file>png/kongtiaofengli-close.png</file>
+        <file>png/kongtiaofengli-open.png</file>
+        <file>png/kongtiao-close.png</file>
+        <file>png/kongtiao-fenge-close.png</file>
+        <file>png/kongtiao-fenge-open.png</file>
+        <file>png/kongtiao-open.png</file>
+        <file>png/kongtiao-mode-close.png</file>
+        <file>png/kongtiao-mode-open.png</file>
+        <file>png/shang-close.png</file>
+        <file>png/shang-open.png</file>
+        <file>png/zi-chushi-none.png</file>
+        <file>png/zi-chushi-select.png</file>
+        <file>png/zi-dafeng-none.png</file>
+        <file>png/zi-dafeng-select.png</file>
+        <file>png/zi-dada-none.png</file>
+        <file>png/zi-dada-select.png</file>
+        <file>png/zi-songfeng-none.png</file>
+        <file>png/zi-songfeng-select.png</file>
+        <file>png/zi-xx-none.png</file>
+        <file>png/zi-xx-select.png</file>
+        <file>png/zi-xiaofeng-none.png</file>
+        <file>png/zi-xiaofeng-select.png</file>
+        <file>png/zi-zhileng-none.png</file>
+        <file>png/zi-zhileng-select.png</file>
+        <file>png/zi-auto-none.png</file>
+        <file>png/zi-auto-select.png</file>
+        <file>png/xia-close.png</file>
+        <file>png/xia-open.png</file>
+        <file>png/icon.jpg</file>
+        <file>png/bgk.jfif</file>
+    </qresource>
+</RCC>
