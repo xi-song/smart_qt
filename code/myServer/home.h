@@ -7,12 +7,16 @@
 #include <QDateTime>
 #include <QTimer>
 
+#include "serial/serial.h"
 #include "tcp/tcpserver.h"
 #include "device/device_ac.h"
 #include "device/device_curtain.h"
 #include "device/device_lamp.h"
 #include "device/device_fan.h"
 #include "my_custom/global.h"
+
+
+
 namespace Ui {
 class home;
 }
@@ -24,7 +28,6 @@ class Home : public QWidget
 public:
     explicit Home(QWidget *parent = 0);
     ~Home();
-    
 
 public:
     Tcpserver* my_tcpServer;
@@ -36,8 +39,11 @@ public:
 
     QTimer* my_timer;
 
+    serial * my_serial;
+
 public slots:
     void slot_timeout(void);
+    void on_pushButton_2_clicked();
 
 private:
     Ui::home *ui;

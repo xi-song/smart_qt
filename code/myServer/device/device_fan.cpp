@@ -42,6 +42,8 @@ void DeviceFan::slot_slider_ON(void)
     ui->label_onoff->setStyleSheet("color:rgb(36,110,202)");
     ui->label_onoff->setText("ON");
 
+
+
 }
 
 /***********************************
@@ -57,5 +59,7 @@ void DeviceFan::slot_slider_OFF(void)
     ui->label_fan->setStyleSheet("border-image:url(:/png/fun-close.png)");
     ui->label_onoff->setStyleSheet("color:rgb(40,40,40)");
     ui->label_onoff->setText("OFF");
+
+
 
 }

@@ -1,12 +1,27 @@
 #ifndef SERIAL1_H
 #define SERIAL1_H
 
-#include <QObject>
 
-class Serial1
+#include<QDebug>
+#include <QSerialPort>
+#include <QSerialPortInfo>
+
+
+
+class serial1 : public QSerialPort
 {
+    Q_OBJECT
 public:
-    Serial1();
+    explicit serial1(QObject *parent = 0);
+    ~serial1();
+    void serialSet();
+    void serialSend(QString &data);
+
+private:
+
+
+
+
 };
 
-#endif // SERIAL1_H
+#endif

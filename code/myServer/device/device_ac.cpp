@@ -10,6 +10,9 @@ DeviceAC::DeviceAC(int room,QWidget *parent) :
     ui->setupUi(this);
 
     room_name = room;
+    my_serial=new serial(LIVINGROOM,this);
+
+
     //数字滚动器
     my_digitalScroller = new DigitalScroller(this);
     connect(my_digitalScroller,SIGNAL(currentValueChanged(int)),this,SLOT(slot_temp_value_channged(int)));
@@ -37,6 +40,11 @@ DeviceAC::DeviceAC(int room,QWidget *parent) :
     connect(ui->btn_cold,SIGNAL(clicked()),this,SLOT(slot_btn_click()));
     connect(ui->btn_dry,SIGNAL(clicked()),this,SLOT(slot_btn_click()));
     connect(ui->btn_xiao,SIGNAL(clicked()),this,SLOT(slot_btn_click()));
+
+
+
+
+
 
     this->setStyleSheet("#frame_background{background-color:#f4fcff;border-radius:15px}");
     ui->label_ac->setStyleSheet("border-image:url(:/png/kongtiao-close.png)");
@@ -137,6 +145,7 @@ void DeviceAC::on_btn_mode_back_clicked()
 void DeviceAC::slot_btn_click(void)
 {
 
+
     QPushButton* btn = qobject_cast<QPushButton*>(sender());
     qDebug() << "按钮= " <<  btn->objectName();
     QString btn_name = btn->objectName();
@@ -163,6 +172,7 @@ void DeviceAC::slot_btn_click(void)
     if(btn_name == "btn_auto")//自动
     {
         emit sig_sendData(g_socket_map.value(room_name),"<*06,104,00*>");
+
     }else if(btn_name == "btn_dry")//除湿
     {
         emit sig_sendData(g_socket_map.value(room_name),"<*06,104,01*>");
@@ -187,6 +197,26 @@ void DeviceAC::slot_btn_click(void)
         emit sig_sendData(g_socket_map.value(room_name),"<*06,105,03*>");
     }
 
+
+    // 根据按钮名称发送对应的指令
+       QHash<QString, QString> commandMap = {
+           {"btn_auto", "0600"},
+           {"btn_dry",  "0601"},
+           {"btn_cold", "0602"},
+           {"btn_wind", "0603"},
+           {"btn_xiao", "0610"},
+           {"btn_low",  "0611"},
+           {"btn_mid",  "0612"},
+           {"btn_high", "0613"}
+       };
+
+       if (commandMap.contains(btn_name)) {
+              // 直接调用串口对象的发送函数
+             qDebug()<<commandMap[btn_name];
+              my_serial->serialSend(commandMap[btn_name]);
+
+          }
+
 }
 /***********************************
  *slot_slider_ON
@@ -196,8 +226,9 @@ void DeviceAC::slot_btn_click(void)
 void DeviceAC::slot_slider_ON(void)
 {
     qDebug() << "空调开";
+    QString data="00";
     emit sig_sendData(g_socket_map.value(room_name),"<*06,102,01*>");
-
+    my_serial->serialSend(data);
 
     ui->btn_auto->setCheckable(true);
     ui->btn_dry->setCheckable(true);
@@ -243,7 +274,8 @@ void DeviceAC::slot_slider_OFF(void)
 {
     qDebug() << "空调关";
     emit sig_sendData(g_socket_map.value(room_name),"<*06,102,00*>");
-
+    QString data="01";
+    my_serial->serialSend(data);
 
     ui->btn_auto->setChecked(false);
     ui->btn_dry->setChecked(false);

@@ -1,6 +1,16 @@
 #include "serial1.h"
 
-Serial1::Serial1()
+
+
+
+serial1::serial1(QObject *parent) :
+    QSerialPort(parent)
 {
 
 }
+
+serial1::~serial1()
+{
+
+}
+

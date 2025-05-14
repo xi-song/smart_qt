@@ -19,6 +19,12 @@ Home::Home(QWidget *parent) :
     my_tcpServer->listen(QHostAddress::Any,6666);
 
 
+    my_serial=new serial(LIVINGROOM,this);
+
+
+   // my_serial->move(10,310);
+
+
     /*启动定时器*/
     my_timer =  new QTimer(this);
     connect(my_timer,SIGNAL(timeout()),this,SLOT(slot_timeout()));
@@ -75,6 +81,8 @@ Home::Home(QWidget *parent) :
 
 }
 
+
+
 void Home::slot_timeout(void)
 {
     /*获取时间*/
@@ -95,4 +103,10 @@ void Home::slot_timeout(void)
 Home::~Home()
 {
     delete ui;
+}
+
+void Home::on_pushButton_2_clicked()
+{
+
+    my_serial->show();
 }

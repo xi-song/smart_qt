@@ -9,7 +9,7 @@
 #include "tcp/tcpsocket.h"
 
 #include "my_custom/global.h"
-
+#include "serial/serial.h"
 namespace Ui {
 class device_ac;
 }
@@ -26,7 +26,7 @@ public:
     SliderButton* my_Slider_btn;
 
     int room_name;
-
+    serial * my_serial;
 
 private slots:
 

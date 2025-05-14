@@ -5,6 +5,8 @@ release/device_curtain.o
 release/digital_scroller.o
 release/global.o
 release/sliderbutton.o
+release/serial.o
+release/serial1.o
 release/tcpserver.o
 release/tcpserver_thread.o
 release/tcpsocket.o
@@ -16,6 +18,8 @@ release/moc_device_ac.o
 release/moc_device_curtain.o
 release/moc_digital_scroller.o
 release/moc_sliderbutton.o
+release/moc_serial.o
+release/moc_serial1.o
 release/moc_tcpserver.o
 release/moc_tcpserver_thread.o
 release/moc_tcpsocket.o

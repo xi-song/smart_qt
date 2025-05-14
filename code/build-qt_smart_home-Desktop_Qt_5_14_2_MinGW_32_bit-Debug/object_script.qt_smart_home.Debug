@@ -5,6 +5,8 @@ debug/device_curtain.o
 debug/digital_scroller.o
 debug/global.o
 debug/sliderbutton.o
+debug/serial.o
+debug/serial1.o
 debug/tcpserver.o
 debug/tcpserver_thread.o
 debug/tcpsocket.o
@@ -16,6 +18,8 @@ debug/moc_device_ac.o
 debug/moc_device_curtain.o
 debug/moc_digital_scroller.o
 debug/moc_sliderbutton.o
+debug/moc_serial.o
+debug/moc_serial1.o
 debug/moc_tcpserver.o
 debug/moc_tcpserver_thread.o
 debug/moc_tcpsocket.o

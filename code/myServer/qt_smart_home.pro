@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui network
-
+QT       +=serialport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = qt_smart_home
@@ -19,6 +19,8 @@ SOURCES += main.cpp\
     my_custom/digital_scroller.cpp \
     my_custom/global.cpp \
     my_custom/sliderbutton.cpp \
+    serial/serial.cpp \
+    serial/serial1.cpp \
     tcp/tcpserver.cpp \
     tcp/tcpserver_thread.cpp \
     tcp/tcpsocket.cpp \
@@ -32,6 +34,8 @@ HEADERS  += \
     my_custom/digital_scroller.h \
     my_custom/global.h \
     my_custom/sliderbutton.h \
+    serial/serial.h \
+    serial/serial1.h \
     tcp/tcpserver.h \
     tcp/tcpserver_thread.h \
     tcp/tcpsocket.h \
@@ -44,7 +48,8 @@ FORMS    += \
     device/device_curtain.ui \
     my_custom/digital_scroller.ui \
     device/device_lamp.ui \
-    device/device_fan.ui
+    device/device_fan.ui \
+    serial/serial.ui
 
 RESOURCES += \
     pic.qrc
