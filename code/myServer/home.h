@@ -7,7 +7,9 @@
 #include <QDateTime>
 #include <QTimer>
 
+#include "login/login.h"
 #include "serial/serial.h"
+#include "music/music.h"
 #include "tcp/tcpserver.h"
 #include "device/device_ac.h"
 #include "device/device_curtain.h"
@@ -28,7 +30,7 @@ class Home : public QWidget
 public:
     explicit Home(QWidget *parent = 0);
     ~Home();
-
+//    void xshow(void);
 public:
     Tcpserver* my_tcpServer;
 
@@ -40,10 +42,14 @@ public:
     QTimer* my_timer;
 
     serial * my_serial;
-
+    music * my_music;
+    login *my_login;
 public slots:
     void slot_timeout(void);
-    void on_pushButton_2_clicked();
+
+
+private slots:
+    void on_pushButton_clicked();
 
 private:
     Ui::home *ui;

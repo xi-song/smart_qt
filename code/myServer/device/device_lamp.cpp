@@ -8,6 +8,8 @@ DeviceLamp::DeviceLamp(int room,QWidget *parent) :
     ui->setupUi(this);
 
     room_name = room;
+    my_serial=new serial(LIVINGROOM,this);
+
     //滑动按钮
     my_Slider_btn = new SliderButton(this);
     my_Slider_btn->set_button_color(QColor(36,110,202),QColor(188,188,188),QColor(255,255,255));
@@ -36,6 +38,8 @@ void DeviceLamp::slot_slider_ON(void)
 {
     qDebug() << "吊灯开";
     emit sig_sendData(g_socket_map.value(room_name),"<*06,100,01*>");
+    QString data="00";
+    my_serial->serialSend(data);
 
     ui->label_lamp->setStyleSheet("border-image:url(:/png/light-open.png)");
     ui->label_onoff->setStyleSheet("color:rgb(36,110,202)");
@@ -51,6 +55,8 @@ void DeviceLamp::slot_slider_OFF(void)
 {
     qDebug() << "吊灯关";
     emit sig_sendData(g_socket_map.value(room_name),"<*06,100,00*>");
+    QString data="00";
+    my_serial->serialSend(data);
 
     ui->label_lamp->setStyleSheet("border-image:url(:/png/light-close.png)");
     ui->label_onoff->setStyleSheet("color:rgb(40,40,40)");

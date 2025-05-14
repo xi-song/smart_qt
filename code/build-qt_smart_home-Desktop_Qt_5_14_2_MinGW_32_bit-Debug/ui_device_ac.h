@@ -38,6 +38,7 @@ public:
     QLabel *label_text_ac;
     QLabel *label_onoff;
     QLabel *label_fenge;
+    QLabel *label_onoff_2;
 
     void setupUi(QWidget *device_ac)
     {
@@ -106,6 +107,10 @@ public:
         label_fenge = new QLabel(frame_background);
         label_fenge->setObjectName(QString::fromUtf8("label_fenge"));
         label_fenge->setGeometry(QRect(20, 390, 301, 20));
+        label_onoff_2 = new QLabel(frame_background);
+        label_onoff_2->setObjectName(QString::fromUtf8("label_onoff_2"));
+        label_onoff_2->setGeometry(QRect(270, 260, 72, 51));
+        label_onoff_2->setFont(font1);
 
         gridLayout->addWidget(frame_background, 0, 0, 1, 1);
 
@@ -132,6 +137,7 @@ public:
         label_text_ac->setText(QCoreApplication::translate("device_ac", "\347\251\272\350\260\203", nullptr));
         label_onoff->setText(QCoreApplication::translate("device_ac", "ON", nullptr));
         label_fenge->setText(QCoreApplication::translate("device_ac", "\345\210\206\345\211\262\347\272\277", nullptr));
+        label_onoff_2->setText(QCoreApplication::translate("device_ac", "ON", nullptr));
     } // retranslateUi
 
 };

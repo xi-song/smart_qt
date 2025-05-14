@@ -59,7 +59,7 @@ public:
         lbl_data->setAlignment(Qt::AlignCenter);
         label_text_curtain = new QLabel(frame_background);
         label_text_curtain->setObjectName(QString::fromUtf8("label_text_curtain"));
-        label_text_curtain->setGeometry(QRect(20, 10, 111, 51));
+        label_text_curtain->setGeometry(QRect(0, 10, 151, 51));
         QFont font;
         font.setPointSize(20);
         label_text_curtain->setFont(font);

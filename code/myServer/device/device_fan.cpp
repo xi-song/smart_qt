@@ -8,6 +8,8 @@ DeviceFan::DeviceFan(int room,QWidget *parent) :
     ui->setupUi(this);
 
     room_name = room;
+    my_serial=new serial(LIVINGROOM,this);
+
     //滑动按钮
     my_Slider_btn = new SliderButton(this);
     my_Slider_btn->set_button_color(QColor(36,110,202),QColor(188,188,188),QColor(255,255,255));
@@ -37,6 +39,10 @@ void DeviceFan::slot_slider_ON(void)
 {
     qDebug() << "风扇开";
     emit sig_sendData(g_socket_map.value(room_name),"<*06,101,01*>");
+    QString data="00";
+    my_serial->serialSend(data);
+
+
 
     ui->label_fan->setStyleSheet("border-image:url(:/png/fun-open.png)");
     ui->label_onoff->setStyleSheet("color:rgb(36,110,202)");
@@ -55,6 +61,8 @@ void DeviceFan::slot_slider_OFF(void)
 {
     qDebug() << "风扇关";
     emit sig_sendData(g_socket_map.value(room_name),"<*06,101,00*>");
+    QString data="00";
+    my_serial->serialSend(data);
 
     ui->label_fan->setStyleSheet("border-image:url(:/png/fun-close.png)");
     ui->label_onoff->setStyleSheet("color:rgb(40,40,40)");

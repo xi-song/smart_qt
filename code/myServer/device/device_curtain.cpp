@@ -1,6 +1,7 @@
 #include "device_curtain.h"
 #include "ui_device_curtain.h"
 
+
 DeviceCurtain::DeviceCurtain(int room,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::device_curtain)
@@ -8,6 +9,11 @@ DeviceCurtain::DeviceCurtain(int room,QWidget *parent) :
     ui->setupUi(this);
 
     room_name = room;
+    my_serial=new serial(LIVINGROOM,this);
+
+
+
+
     //滑动按钮
     my_Slider_btn = new SliderButton(this);
     my_Slider_btn->set_button_color(QColor(36,110,202),QColor(188,188,188),QColor(255,255,255));
@@ -123,6 +129,11 @@ void DeviceCurtain::slot_dataChanged(void)
 {
     int scale = abs(ui->label_curtain->pos().y()) * 1.0 /ui->label_curtain->height() * 100;
     ui->lbl_data->setText(QString::number(scale) + " %");
+
+
+    QString data=QString::number(scale);
+    my_serial->serialSend(data);
+
 }
 
 
@@ -135,6 +146,10 @@ void DeviceCurtain::slot_slider_ON(void)
 {
     qDebug() << "百叶窗开";
     emit sig_sendData(g_socket_map.value(room_name),"<*06,106,01*>");
+    QString data="00";
+    my_serial->serialSend(data);
+
+
 
     ui->label_curtain->setStyleSheet("border-image:url(:/png/bai-ye-open.png)");
     ui->label_lan->setStyleSheet("border-image:url(:/png/bai-lan-open.png)");
@@ -156,6 +171,10 @@ void DeviceCurtain::slot_slider_OFF(void)
 {
     qDebug() << "百叶窗关";
     emit sig_sendData(g_socket_map.value(room_name),"<*06,106,00*>");
+    QString data="00";
+    my_serial->serialSend(data);
+
+
 
     ui->label_curtain->setStyleSheet("border-image:url(:/png/bai-ye-close.png)");
     ui->label_lan->setStyleSheet("border-image:url(:/png/bai-lan-close.png)");

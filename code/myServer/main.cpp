@@ -8,11 +8,8 @@
 
 
 
-
 int main(int argc, char *argv[])
 {
-
-
 
    QApplication a(argc, argv);
 
@@ -28,8 +25,11 @@ int main(int argc, char *argv[])
 //    QTextCodec::setCodecForCStrings(codec);
 //    QApplication::setStyle(QStyleFactory::create("windows"));
 
+//    login l;
+//    l.show();
+
     Home h;
-    h.show();
+//    h.show();
 
     return a.exec();
 }

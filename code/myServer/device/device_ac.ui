@@ -239,6 +239,26 @@
        <string>分割线</string>
       </property>
      </widget>
+     <widget class="QLabel" name="label_onoff_2">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>260</y>
+        <width>72</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>ON</string>
+      </property>
+     </widget>
     </widget>
    </item>
   </layout>

@@ -39,5 +39,21 @@
         <file>png/xia-open.png</file>
         <file>png/icon.jpg</file>
         <file>png/bgk.jfif</file>
+        <file>icon/circle.png</file>
+        <file>icon/music.png</file>
+        <file>icon/next.png</file>
+        <file>icon/order.png</file>
+        <file>icon/paly.png</file>
+        <file>icon/pre.png</file>
+        <file>icon/random.png</file>
+        <file>icon/stop.png</file>
+        <file>imag/3.jpg</file>
+        <file>imag/2.jpg</file>
+        <file>png/lgbg.png</file>
+        <file>png/login_bkg.jpg</file>
+        <file>png/lgbg1.png</file>
+        <file>png/lgbg2.png</file>
+        <file>png/lgbg3.png</file>
+        <file>png/lgbg.jfif</file>
     </qresource>
 </RCC>

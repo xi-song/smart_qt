@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "my_custom/global.h"
 #include "my_custom/sliderbutton.h"
-
+#include "serial/serial.h"
 namespace Ui {
 class DeviceFan;
 }
@@ -22,7 +22,7 @@ public:
     int room_name;
 private:
     Ui::DeviceFan *ui;
-
+     serial * my_serial;
 
 public slots:
     void slot_slider_OFF(void);

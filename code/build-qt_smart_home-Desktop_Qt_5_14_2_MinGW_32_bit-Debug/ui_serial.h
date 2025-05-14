@@ -27,6 +27,7 @@ public:
     QPushButton *pushButton;
     QRadioButton *radioButton;
     QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
 
     void setupUi(QWidget *serial)
     {
@@ -71,6 +72,10 @@ public:
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
         pushButton_2->setGeometry(QRect(250, 250, 191, 81));
         pushButton_2->setFont(font2);
+        pushButton_3 = new QPushButton(serial);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+        pushButton_3->setGeometry(QRect(330, 190, 191, 81));
+        pushButton_3->setFont(font2);
 
         retranslateUi(serial);
 
@@ -84,6 +89,7 @@ public:
         pushButton->setText(QCoreApplication::translate("serial", "\346\211\253\346\217\217\344\270\262\345\217\243", nullptr));
         radioButton->setText(QCoreApplication::translate("serial", "RadioButton", nullptr));
         pushButton_2->setText(QCoreApplication::translate("serial", "\346\211\223\345\274\200\344\270\262\345\217\243", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("serial", "\346\211\253\346\217\217\344\270\262\345\217\243", nullptr));
     } // retranslateUi
 
 };

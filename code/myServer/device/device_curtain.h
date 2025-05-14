@@ -10,7 +10,7 @@
 #include "my_custom/global.h"
 
 #include "my_custom/sliderbutton.h"
-
+#include "serial/serial.h"
 namespace Ui {
 class device_curtain;
 }
@@ -29,7 +29,7 @@ public:
     QPropertyAnimation* aniamtion_up;
     QPropertyAnimation* aniamtion_down;
     QTimer* data_timer;
-
+     serial * my_serial;
     int room_name;
 private slots:
 

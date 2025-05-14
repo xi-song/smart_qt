@@ -11,8 +11,15 @@ Home::Home(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::home)
 {
+
     ui->setupUi(this);
+
+
+
     setWindowIcon(QIcon("://png/bgk.jfif"));
+
+
+
 
     my_tcpServer = new Tcpserver(this);
     //启动服务器线程
@@ -20,6 +27,8 @@ Home::Home(QWidget *parent) :
 
 
     my_serial=new serial(LIVINGROOM,this);
+    my_music=new music(this);
+
 
 
    // my_serial->move(10,310);
@@ -68,8 +77,8 @@ Home::Home(QWidget *parent) :
     ui->label_time_2->setStyleSheet("color:#FFFFFF");
     ui->label_status->setStyleSheet("color:#FFFFFF");
 
-     ui->label_fenge->setFixedWidth(3);
-     ui->label_fenge->setText("");
+    ui->label_fenge->setFixedWidth(3);
+    ui->label_fenge->setText("");
     ui->label_fenge->setStyleSheet("background-color:#FFFFFF");
 
     ui->label_info->setStyleSheet("color:rgba(255,255,255,200)");
@@ -79,9 +88,17 @@ Home::Home(QWidget *parent) :
     ui->label_time_1->setText(QTime::currentTime().toString("hh:mm"));
     ui->label_time_2->setText(QDateTime::currentDateTime().toString("yyyy-MM-dd ddd"));
 
+    my_login=new login(this);
+    my_login->show();
+
+    connect(my_login,SIGNAL(login_in()),this,SLOT(show()));
+
 }
 
-
+//void Home::xshow(void){
+//   this->show();
+//   my_login->hide();
+//}
 
 void Home::slot_timeout(void)
 {
@@ -105,8 +122,15 @@ Home::~Home()
     delete ui;
 }
 
-void Home::on_pushButton_2_clicked()
-{
 
-    my_serial->show();
+void Home::on_pushButton_clicked()
+{
+//    QString btnObj= ((QPushButton*)sender())->text(); //获取按钮txt文字
+//    if(btnObj=="播放音乐")
+//     ui->pushButton->setText("暂停音乐");
+//    else
+//     ui->pushButton->setText("播放音乐");
+    my_music->show();
+
+
 }

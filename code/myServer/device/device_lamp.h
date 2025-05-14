@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "my_custom/global.h"
 #include "my_custom/sliderbutton.h"
-
+#include "serial/serial.h"
 namespace Ui {
 class DeviceLamp;
 }
@@ -19,7 +19,7 @@ public:
 
     SliderButton* my_Slider_btn;
     int room_name;
-
+     serial * my_serial;
 private:
     Ui::DeviceLamp *ui;
 

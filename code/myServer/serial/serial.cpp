@@ -83,4 +83,5 @@ void serial::serialSend(QString &data){
            } else {
                qDebug() << "串口未打开！";
            }
+        Myserial->close();
 }

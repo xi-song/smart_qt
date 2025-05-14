@@ -253,6 +253,7 @@ Makefile: ../myServer/qt_smart_home.pro D:/Qt/content/5.14.2/mingw73_32/mkspecs/
 		D:/Qt/content/5.14.2/mingw73_32/mkspecs/features/yacc.prf \
 		D:/Qt/content/5.14.2/mingw73_32/mkspecs/features/lex.prf \
 		../myServer/qt_smart_home.pro \
+		D:/Qt/content/5.14.2/mingw73_32/lib/Qt5Multimedia.prl \
 		D:/Qt/content/5.14.2/mingw73_32/lib/Qt5Widgets.prl \
 		D:/Qt/content/5.14.2/mingw73_32/lib/Qt5Gui.prl \
 		D:/Qt/content/5.14.2/mingw73_32/lib/Qt5Network.prl \
@@ -445,6 +446,7 @@ D:/Qt/content/5.14.2/mingw73_32/mkspecs/features/exceptions.prf:
 D:/Qt/content/5.14.2/mingw73_32/mkspecs/features/yacc.prf:
 D:/Qt/content/5.14.2/mingw73_32/mkspecs/features/lex.prf:
 ../myServer/qt_smart_home.pro:
+D:/Qt/content/5.14.2/mingw73_32/lib/Qt5Multimedia.prl:
 D:/Qt/content/5.14.2/mingw73_32/lib/Qt5Widgets.prl:
 D:/Qt/content/5.14.2/mingw73_32/lib/Qt5Gui.prl:
 D:/Qt/content/5.14.2/mingw73_32/lib/Qt5Network.prl:

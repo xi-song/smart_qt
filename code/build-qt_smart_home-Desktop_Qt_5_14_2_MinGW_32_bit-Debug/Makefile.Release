@@ -13,13 +13,13 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DMINGW_HAS_SECURE_API=1 -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SERIALPORT_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
+DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DMINGW_HAS_SECURE_API=1 -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SERIALPORT_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -fno-keep-inline-dllexport -O2 -Wall -Wextra -Wextra $(DEFINES)
 CXXFLAGS      = -fno-keep-inline-dllexport -O2 -Wall -Wextra -Wextra -fexceptions -mthreads $(DEFINES)
-INCPATH       = -I..\myServer -I. -ID:\Qt\content\5.14.2\mingw73_32\include -ID:\Qt\content\5.14.2\mingw73_32\include\QtWidgets -ID:\Qt\content\5.14.2\mingw73_32\include\QtGui -ID:\Qt\content\5.14.2\mingw73_32\include\QtANGLE -ID:\Qt\content\5.14.2\mingw73_32\include\QtNetwork -ID:\Qt\content\5.14.2\mingw73_32\include\QtSerialPort -ID:\Qt\content\5.14.2\mingw73_32\include\QtCore -Irelease -I. -ID:\Qt\content\5.14.2\mingw73_32\mkspecs\win32-g++ 
+INCPATH       = -I..\myServer -I. -ID:\Qt\content\5.14.2\mingw73_32\include -ID:\Qt\content\5.14.2\mingw73_32\include\QtMultimedia -ID:\Qt\content\5.14.2\mingw73_32\include\QtWidgets -ID:\Qt\content\5.14.2\mingw73_32\include\QtGui -ID:\Qt\content\5.14.2\mingw73_32\include\QtANGLE -ID:\Qt\content\5.14.2\mingw73_32\include\QtNetwork -ID:\Qt\content\5.14.2\mingw73_32\include\QtSerialPort -ID:\Qt\content\5.14.2\mingw73_32\include\QtCore -Irelease -I. -ID:\Qt\content\5.14.2\mingw73_32\mkspecs\win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        D:\Qt\content\5.14.2\mingw73_32\lib\libQt5Widgets.a D:\Qt\content\5.14.2\mingw73_32\lib\libQt5Gui.a D:\Qt\content\5.14.2\mingw73_32\lib\libQt5Network.a D:\Qt\content\5.14.2\mingw73_32\lib\libQt5SerialPort.a D:\Qt\content\5.14.2\mingw73_32\lib\libQt5Core.a  -lmingw32 D:\Qt\content\5.14.2\mingw73_32\lib\libqtmain.a -LC:\openssl\lib -LC:\Utils\my_sql\mysql-5.7.25-win32\lib -LC:\Utils\postgresql\pgsql\lib -lshell32 
+LIBS        =        D:\Qt\content\5.14.2\mingw73_32\lib\libQt5Multimedia.a D:\Qt\content\5.14.2\mingw73_32\lib\libQt5Widgets.a D:\Qt\content\5.14.2\mingw73_32\lib\libQt5Gui.a D:\Qt\content\5.14.2\mingw73_32\lib\libQt5Network.a D:\Qt\content\5.14.2\mingw73_32\lib\libQt5SerialPort.a D:\Qt\content\5.14.2\mingw73_32\lib\libQt5Core.a  -lmingw32 D:\Qt\content\5.14.2\mingw73_32\lib\libqtmain.a -LC:\openssl\lib -LC:\Utils\my_sql\mysql-5.7.25-win32\lib -LC:\Utils\postgresql\pgsql\lib -lshell32 
 QMAKE         = D:\Qt\content\5.14.2\mingw73_32\bin\qmake.exe
 DEL_FILE      = del
 CHK_DIR_EXISTS= if not exist
@@ -54,6 +54,7 @@ SOURCES       = ..\myServer\main.cpp \
 		..\myServer\home.cpp \
 		..\myServer\device\device_ac.cpp \
 		..\myServer\device\device_curtain.cpp \
+		..\myServer\music\music.cpp \
 		..\myServer\my_custom\digital_scroller.cpp \
 		..\myServer\my_custom\global.cpp \
 		..\myServer\my_custom\sliderbutton.cpp \
@@ -63,10 +64,12 @@ SOURCES       = ..\myServer\main.cpp \
 		..\myServer\tcp\tcpserver_thread.cpp \
 		..\myServer\tcp\tcpsocket.cpp \
 		..\myServer\device\device_lamp.cpp \
-		..\myServer\device\device_fan.cpp release\qrc_pic.cpp \
+		..\myServer\device\device_fan.cpp \
+		..\myServer\login\login.cpp release\qrc_pic.cpp \
 		release\moc_home.cpp \
 		release\moc_device_ac.cpp \
 		release\moc_device_curtain.cpp \
+		release\moc_music.cpp \
 		release\moc_digital_scroller.cpp \
 		release\moc_sliderbutton.cpp \
 		release\moc_serial.cpp \
@@ -75,11 +78,13 @@ SOURCES       = ..\myServer\main.cpp \
 		release\moc_tcpserver_thread.cpp \
 		release\moc_tcpsocket.cpp \
 		release\moc_device_lamp.cpp \
-		release\moc_device_fan.cpp
+		release\moc_device_fan.cpp \
+		release\moc_login.cpp
 OBJECTS       = release/main.o \
 		release/home.o \
 		release/device_ac.o \
 		release/device_curtain.o \
+		release/music.o \
 		release/digital_scroller.o \
 		release/global.o \
 		release/sliderbutton.o \
@@ -90,10 +95,12 @@ OBJECTS       = release/main.o \
 		release/tcpsocket.o \
 		release/device_lamp.o \
 		release/device_fan.o \
+		release/login.o \
 		release/qrc_pic.o \
 		release/moc_home.o \
 		release/moc_device_ac.o \
 		release/moc_device_curtain.o \
+		release/moc_music.o \
 		release/moc_digital_scroller.o \
 		release/moc_sliderbutton.o \
 		release/moc_serial.o \
@@ -102,11 +109,13 @@ OBJECTS       = release/main.o \
 		release/moc_tcpserver_thread.o \
 		release/moc_tcpsocket.o \
 		release/moc_device_lamp.o \
-		release/moc_device_fan.o
+		release/moc_device_fan.o \
+		release/moc_login.o
 
 DIST          =  ..\myServer\home.h \
 		..\myServer\device\device_ac.h \
 		..\myServer\device\device_curtain.h \
+		..\myServer\music\music.h \
 		..\myServer\my_custom\digital_scroller.h \
 		..\myServer\my_custom\global.h \
 		..\myServer\my_custom\sliderbutton.h \
@@ -116,10 +125,12 @@ DIST          =  ..\myServer\home.h \
 		..\myServer\tcp\tcpserver_thread.h \
 		..\myServer\tcp\tcpsocket.h \
 		..\myServer\device\device_lamp.h \
-		..\myServer\device\device_fan.h ..\myServer\main.cpp \
+		..\myServer\device\device_fan.h \
+		..\myServer\login\login.h ..\myServer\main.cpp \
 		..\myServer\home.cpp \
 		..\myServer\device\device_ac.cpp \
 		..\myServer\device\device_curtain.cpp \
+		..\myServer\music\music.cpp \
 		..\myServer\my_custom\digital_scroller.cpp \
 		..\myServer\my_custom\global.cpp \
 		..\myServer\my_custom\sliderbutton.cpp \
@@ -129,7 +140,8 @@ DIST          =  ..\myServer\home.h \
 		..\myServer\tcp\tcpserver_thread.cpp \
 		..\myServer\tcp\tcpsocket.cpp \
 		..\myServer\device\device_lamp.cpp \
-		..\myServer\device\device_fan.cpp
+		..\myServer\device\device_fan.cpp \
+		..\myServer\login\login.cpp
 QMAKE_TARGET  = qt_smart_home
 DESTDIR        = release\ #avoid trailing-slash linebreak
 TARGET         = qt_smart_home.exe
@@ -140,7 +152,7 @@ DESTDIR_TARGET = release\qt_smart_home.exe
 first: all
 all: Makefile.Release  release/qt_smart_home.exe
 
-release/qt_smart_home.exe: D:/Qt/content/5.14.2/mingw73_32/lib/libQt5Widgets.a D:/Qt/content/5.14.2/mingw73_32/lib/libQt5Gui.a D:/Qt/content/5.14.2/mingw73_32/lib/libQt5Network.a D:/Qt/content/5.14.2/mingw73_32/lib/libQt5SerialPort.a D:/Qt/content/5.14.2/mingw73_32/lib/libQt5Core.a D:/Qt/content/5.14.2/mingw73_32/lib/libqtmain.a ui_home.h ui_device_ac.h ui_device_curtain.h ui_digital_scroller.h ui_device_lamp.h ui_device_fan.h ui_serial.h $(OBJECTS) 
+release/qt_smart_home.exe: D:/Qt/content/5.14.2/mingw73_32/lib/libQt5Multimedia.a D:/Qt/content/5.14.2/mingw73_32/lib/libQt5Widgets.a D:/Qt/content/5.14.2/mingw73_32/lib/libQt5Gui.a D:/Qt/content/5.14.2/mingw73_32/lib/libQt5Network.a D:/Qt/content/5.14.2/mingw73_32/lib/libQt5SerialPort.a D:/Qt/content/5.14.2/mingw73_32/lib/libQt5Core.a D:/Qt/content/5.14.2/mingw73_32/lib/libqtmain.a ui_home.h ui_device_ac.h ui_device_curtain.h ui_music.h ui_digital_scroller.h ui_device_lamp.h ui_device_fan.h ui_serial.h ui_login.h $(OBJECTS) 
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) @object_script.qt_smart_home.Release  $(LIBS)
 
 qmake: FORCE
@@ -149,10 +161,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) qt_smart_home.zip $(SOURCES) $(DIST) ..\myServer\qt_smart_home.pro D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\spec_pre.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\qdevice.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\device_config.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\common\sanitize.conf D:\Qt\content\5.14.2\mingw73_32\mkspecs\common\gcc-base.conf D:\Qt\content\5.14.2\mingw73_32\mkspecs\common\g++-base.conf D:\Qt\content\5.14.2\mingw73_32\mkspecs\common\angle.conf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\win32\windows_vulkan_sdk.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\common\windows-vulkan.conf D:\Qt\content\5.14.2\mingw73_32\mkspecs\common\g++-win32.conf D:\Qt\content\5.14.2\mingw73_32\mkspecs\common\windows-desktop.conf D:\Qt\content\5.14.2\mingw73_32\mkspecs\qconfig.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3danimation.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3danimation_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dcore.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dcore_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dextras.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dextras_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dinput.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dinput_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dlogic.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dlogic_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquick.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquick_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickanimation.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickanimation_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickextras.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickextras_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickinput.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickinput_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickrender.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickrender_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickscene2d.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickscene2d_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3drender.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3drender_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_accessibility_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_axbase.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_axbase_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_axcontainer.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_axcontainer_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_axserver.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_axserver_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_bluetooth.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_bluetooth_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_bootstrap_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_charts.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_charts_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_concurrent.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_concurrent_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_core.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_core_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_datavisualization.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_datavisualization_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_dbus.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_dbus_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_designer.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_designer_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_designercomponents_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_devicediscovery_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_edid_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_egl_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_fb_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_fontdatabase_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_gamepad.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_gamepad_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_gui.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_gui_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_help.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_help_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_location.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_location_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_multimedia.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_multimedia_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_multimediawidgets.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_network.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_network_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_networkauth.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_networkauth_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_nfc.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_nfc_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_opengl.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_opengl_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_openglextensions.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_openglextensions_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_packetprotocol_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_platformcompositor_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_positioning.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_positioning_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_positioningquick.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_positioningquick_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_printsupport.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_printsupport_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qml.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qml_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qmldebug_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qmldevtools_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qmlmodels.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qmlmodels_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qmltest.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qmltest_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qmlworkerscript.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qmlworkerscript_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quick.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quick_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quickcontrols2.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quickcontrols2_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quickparticles_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quickshapes_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quicktemplates2.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quicktemplates2_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quickwidgets.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quickwidgets_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_remoteobjects.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_remoteobjects_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_repparser.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_repparser_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_scxml.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_scxml_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_sensors.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_sensors_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_serialbus.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_serialbus_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_serialport.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_serialport_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_sql.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_sql_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_svg.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_svg_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_testlib.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_testlib_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_texttospeech.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_texttospeech_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_theme_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_uiplugin.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_uitools.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_uitools_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_webchannel.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_webchannel_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_websockets.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_websockets_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_widgets.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_widgets_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_winextras.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_winextras_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_xml.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_xml_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_xmlpatterns.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_zlib_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\qt_functions.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\qt_config.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\win32-g++\qmake.conf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\spec_post.prf .qmake.stash D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\exclusive_builds.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\toolchain.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\default_pre.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\win32\default_pre.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\resolve_config.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\exclusive_builds_post.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\default_post.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\build_pass.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\qml_debug.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\precompile_header.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\warn_on.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\qt.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\resources_functions.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\resources.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\moc.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\win32\opengl.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\uic.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\qmake_use.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\file_copies.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\win32\windows.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\testcase_targets.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\exceptions.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\yacc.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\lex.prf ..\myServer\qt_smart_home.pro ..\myServer\pic.qrc D:\Qt\content\5.14.2\mingw73_32\lib\Qt5Widgets.prl D:\Qt\content\5.14.2\mingw73_32\lib\Qt5Gui.prl D:\Qt\content\5.14.2\mingw73_32\lib\Qt5Network.prl D:\Qt\content\5.14.2\mingw73_32\lib\Qt5SerialPort.prl D:\Qt\content\5.14.2\mingw73_32\lib\Qt5Core.prl D:\Qt\content\5.14.2\mingw73_32\lib\qtmain.prl   ..\myServer\pic.qrc D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\data\dummy.cpp ..\myServer\home.h ..\myServer\device\device_ac.h ..\myServer\device\device_curtain.h ..\myServer\my_custom\digital_scroller.h ..\myServer\my_custom\global.h ..\myServer\my_custom\sliderbutton.h ..\myServer\serial\serial.h ..\myServer\serial\serial1.h ..\myServer\tcp\tcpserver.h ..\myServer\tcp\tcpserver_thread.h ..\myServer\tcp\tcpsocket.h ..\myServer\device\device_lamp.h ..\myServer\device\device_fan.h  ..\myServer\main.cpp ..\myServer\home.cpp ..\myServer\device\device_ac.cpp ..\myServer\device\device_curtain.cpp ..\myServer\my_custom\digital_scroller.cpp ..\myServer\my_custom\global.cpp ..\myServer\my_custom\sliderbutton.cpp ..\myServer\serial\serial.cpp ..\myServer\serial\serial1.cpp ..\myServer\tcp\tcpserver.cpp ..\myServer\tcp\tcpserver_thread.cpp ..\myServer\tcp\tcpsocket.cpp ..\myServer\device\device_lamp.cpp ..\myServer\device\device_fan.cpp ..\myServer\home.ui ..\myServer\device\device_ac.ui ..\myServer\device\device_curtain.ui ..\myServer\my_custom\digital_scroller.ui ..\myServer\device\device_lamp.ui ..\myServer\device\device_fan.ui ..\myServer\serial\serial.ui    
+	$(ZIP) qt_smart_home.zip $(SOURCES) $(DIST) ..\myServer\qt_smart_home.pro D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\spec_pre.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\qdevice.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\device_config.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\common\sanitize.conf D:\Qt\content\5.14.2\mingw73_32\mkspecs\common\gcc-base.conf D:\Qt\content\5.14.2\mingw73_32\mkspecs\common\g++-base.conf D:\Qt\content\5.14.2\mingw73_32\mkspecs\common\angle.conf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\win32\windows_vulkan_sdk.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\common\windows-vulkan.conf D:\Qt\content\5.14.2\mingw73_32\mkspecs\common\g++-win32.conf D:\Qt\content\5.14.2\mingw73_32\mkspecs\common\windows-desktop.conf D:\Qt\content\5.14.2\mingw73_32\mkspecs\qconfig.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3danimation.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3danimation_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dcore.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dcore_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dextras.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dextras_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dinput.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dinput_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dlogic.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dlogic_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquick.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquick_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickanimation.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickanimation_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickextras.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickextras_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickinput.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickinput_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickrender.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickrender_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickscene2d.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3dquickscene2d_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3drender.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_3drender_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_accessibility_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_axbase.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_axbase_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_axcontainer.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_axcontainer_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_axserver.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_axserver_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_bluetooth.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_bluetooth_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_bootstrap_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_charts.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_charts_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_concurrent.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_concurrent_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_core.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_core_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_datavisualization.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_datavisualization_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_dbus.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_dbus_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_designer.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_designer_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_designercomponents_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_devicediscovery_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_edid_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_egl_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_fb_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_fontdatabase_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_gamepad.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_gamepad_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_gui.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_gui_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_help.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_help_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_location.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_location_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_multimedia.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_multimedia_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_multimediawidgets.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_network.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_network_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_networkauth.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_networkauth_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_nfc.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_nfc_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_opengl.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_opengl_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_openglextensions.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_openglextensions_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_packetprotocol_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_platformcompositor_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_positioning.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_positioning_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_positioningquick.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_positioningquick_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_printsupport.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_printsupport_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qml.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qml_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qmldebug_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qmldevtools_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qmlmodels.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qmlmodels_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qmltest.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qmltest_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qmlworkerscript.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qmlworkerscript_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quick.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quick_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quickcontrols2.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quickcontrols2_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quickparticles_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quickshapes_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quicktemplates2.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quicktemplates2_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quickwidgets.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_quickwidgets_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_remoteobjects.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_remoteobjects_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_repparser.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_repparser_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_scxml.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_scxml_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_sensors.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_sensors_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_serialbus.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_serialbus_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_serialport.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_serialport_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_sql.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_sql_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_svg.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_svg_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_testlib.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_testlib_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_texttospeech.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_texttospeech_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_theme_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_uiplugin.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_uitools.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_uitools_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_webchannel.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_webchannel_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_websockets.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_websockets_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_widgets.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_widgets_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_winextras.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_winextras_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_xml.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_xml_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_xmlpatterns.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\modules\qt_lib_zlib_private.pri D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\qt_functions.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\qt_config.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\win32-g++\qmake.conf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\spec_post.prf .qmake.stash D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\exclusive_builds.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\toolchain.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\default_pre.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\win32\default_pre.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\resolve_config.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\exclusive_builds_post.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\default_post.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\build_pass.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\qml_debug.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\precompile_header.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\warn_on.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\qt.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\resources_functions.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\resources.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\moc.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\win32\opengl.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\uic.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\qmake_use.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\file_copies.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\win32\windows.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\testcase_targets.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\exceptions.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\yacc.prf D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\lex.prf ..\myServer\qt_smart_home.pro ..\myServer\pic.qrc D:\Qt\content\5.14.2\mingw73_32\lib\Qt5Multimedia.prl D:\Qt\content\5.14.2\mingw73_32\lib\Qt5Widgets.prl D:\Qt\content\5.14.2\mingw73_32\lib\Qt5Gui.prl D:\Qt\content\5.14.2\mingw73_32\lib\Qt5Network.prl D:\Qt\content\5.14.2\mingw73_32\lib\Qt5SerialPort.prl D:\Qt\content\5.14.2\mingw73_32\lib\Qt5Core.prl D:\Qt\content\5.14.2\mingw73_32\lib\qtmain.prl   ..\myServer\pic.qrc D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\data\dummy.cpp ..\myServer\home.h ..\myServer\device\device_ac.h ..\myServer\device\device_curtain.h ..\myServer\music\music.h ..\myServer\my_custom\digital_scroller.h ..\myServer\my_custom\global.h ..\myServer\my_custom\sliderbutton.h ..\myServer\serial\serial.h ..\myServer\serial\serial1.h ..\myServer\tcp\tcpserver.h ..\myServer\tcp\tcpserver_thread.h ..\myServer\tcp\tcpsocket.h ..\myServer\device\device_lamp.h ..\myServer\device\device_fan.h ..\myServer\login\login.h  ..\myServer\main.cpp ..\myServer\home.cpp ..\myServer\device\device_ac.cpp ..\myServer\device\device_curtain.cpp ..\myServer\music\music.cpp ..\myServer\my_custom\digital_scroller.cpp ..\myServer\my_custom\global.cpp ..\myServer\my_custom\sliderbutton.cpp ..\myServer\serial\serial.cpp ..\myServer\serial\serial1.cpp ..\myServer\tcp\tcpserver.cpp ..\myServer\tcp\tcpserver_thread.cpp ..\myServer\tcp\tcpsocket.cpp ..\myServer\device\device_lamp.cpp ..\myServer\device\device_fan.cpp ..\myServer\login\login.cpp ..\myServer\home.ui ..\myServer\device\device_ac.ui ..\myServer\device\device_curtain.ui ..\myServer\music\music.ui ..\myServer\my_custom\digital_scroller.ui ..\myServer\device\device_lamp.ui ..\myServer\device\device_fan.ui ..\myServer\serial\serial.ui ..\myServer\login\login.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\main.o release\home.o release\device_ac.o release\device_curtain.o release\digital_scroller.o release\global.o release\sliderbutton.o release\serial.o release\serial1.o release\tcpserver.o release\tcpserver_thread.o release\tcpsocket.o release\device_lamp.o release\device_fan.o release\qrc_pic.o release\moc_home.o release\moc_device_ac.o release\moc_device_curtain.o release\moc_digital_scroller.o release\moc_sliderbutton.o release\moc_serial.o release\moc_serial1.o release\moc_tcpserver.o release\moc_tcpserver_thread.o release\moc_tcpsocket.o release\moc_device_lamp.o release\moc_device_fan.o
+	-$(DEL_FILE) release\main.o release\home.o release\device_ac.o release\device_curtain.o release\music.o release\digital_scroller.o release\global.o release\sliderbutton.o release\serial.o release\serial1.o release\tcpserver.o release\tcpserver_thread.o release\tcpsocket.o release\device_lamp.o release\device_fan.o release\login.o release\qrc_pic.o release\moc_home.o release\moc_device_ac.o release\moc_device_curtain.o release\moc_music.o release\moc_digital_scroller.o release\moc_sliderbutton.o release\moc_serial.o release\moc_serial1.o release\moc_tcpserver.o release\moc_tcpserver_thread.o release\moc_tcpsocket.o release\moc_device_lamp.o release\moc_device_fan.o release\moc_login.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -174,10 +186,13 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_pic.cpp
 release/qrc_pic.cpp: ../myServer/pic.qrc \
 		D:/Qt/content/5.14.2/mingw73_32/bin/rcc.exe \
+		../myServer/png/login_bkg.jpg \
 		../myServer/png/zi-dada-none.png \
 		../myServer/png/zi-xiaofeng-none.png \
+		../myServer/png/lgbg1.png \
 		../myServer/png/kongtiao-fenge-close.png \
 		../myServer/png/zi-songfeng-select.png \
+		../myServer/png/lgbg.jfif \
 		../myServer/png/kongtiaofengli-close.png \
 		../myServer/png/zi-xx-select.png \
 		../myServer/png/kongtiao-open.png \
@@ -189,6 +204,7 @@ release/qrc_pic.cpp: ../myServer/pic.qrc \
 		../myServer/png/icon.jpg \
 		../myServer/png/bai-ye-close.png \
 		../myServer/png/bgk.jfif \
+		../myServer/png/lgbg.png \
 		../myServer/png/zi-auto-select.png \
 		../myServer/png/zi-auto-none.png \
 		../myServer/png/zi-xx-none.png \
@@ -206,13 +222,25 @@ release/qrc_pic.cpp: ../myServer/pic.qrc \
 		../myServer/png/shang-close.png \
 		../myServer/png/zi-dafeng-none.png \
 		../myServer/png/xia-close.png \
+		../myServer/png/lgbg3.png \
 		../myServer/png/zi-dada-select.png \
 		../myServer/png/shang-open.png \
 		../myServer/png/zi-dafeng-select.png \
 		../myServer/png/kongtiao-close.png \
 		../myServer/png/zi-xiaofeng-select.png \
 		../myServer/png/kongtiao-fenge-open.png \
-		../myServer/png/zi-zhileng-select.png
+		../myServer/png/lgbg2.png \
+		../myServer/png/zi-zhileng-select.png \
+		../myServer/imag/3.jpg \
+		../myServer/imag/2.jpg \
+		../myServer/icon/pre.png \
+		../myServer/icon/stop.png \
+		../myServer/icon/circle.png \
+		../myServer/icon/random.png \
+		../myServer/icon/music.png \
+		../myServer/icon/paly.png \
+		../myServer/icon/next.png \
+		../myServer/icon/order.png
 	D:\Qt\content\5.14.2\mingw73_32\bin\rcc.exe -name pic ..\myServer\pic.qrc -o release\qrc_pic.cpp
 
 compiler_moc_predefs_make_all: release/moc_predefs.h
@@ -221,9 +249,9 @@ compiler_moc_predefs_clean:
 release/moc_predefs.h: D:/Qt/content/5.14.2/mingw73_32/mkspecs/features/data/dummy.cpp
 	g++ -fno-keep-inline-dllexport -O2 -Wall -Wextra -Wextra -dM -E -o release\moc_predefs.h D:\Qt\content\5.14.2\mingw73_32\mkspecs\features\data\dummy.cpp
 
-compiler_moc_header_make_all: release/moc_home.cpp release/moc_device_ac.cpp release/moc_device_curtain.cpp release/moc_digital_scroller.cpp release/moc_sliderbutton.cpp release/moc_serial.cpp release/moc_serial1.cpp release/moc_tcpserver.cpp release/moc_tcpserver_thread.cpp release/moc_tcpsocket.cpp release/moc_device_lamp.cpp release/moc_device_fan.cpp
+compiler_moc_header_make_all: release/moc_home.cpp release/moc_device_ac.cpp release/moc_device_curtain.cpp release/moc_music.cpp release/moc_digital_scroller.cpp release/moc_sliderbutton.cpp release/moc_serial.cpp release/moc_serial1.cpp release/moc_tcpserver.cpp release/moc_tcpserver_thread.cpp release/moc_tcpsocket.cpp release/moc_device_lamp.cpp release/moc_device_fan.cpp release/moc_login.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) release\moc_home.cpp release\moc_device_ac.cpp release\moc_device_curtain.cpp release\moc_digital_scroller.cpp release\moc_sliderbutton.cpp release\moc_serial.cpp release\moc_serial1.cpp release\moc_tcpserver.cpp release\moc_tcpserver_thread.cpp release\moc_tcpsocket.cpp release\moc_device_lamp.cpp release\moc_device_fan.cpp
+	-$(DEL_FILE) release\moc_home.cpp release\moc_device_ac.cpp release\moc_device_curtain.cpp release\moc_music.cpp release\moc_digital_scroller.cpp release\moc_sliderbutton.cpp release\moc_serial.cpp release\moc_serial1.cpp release\moc_tcpserver.cpp release\moc_tcpserver_thread.cpp release\moc_tcpsocket.cpp release\moc_device_lamp.cpp release\moc_device_fan.cpp release\moc_login.cpp
 release/moc_home.cpp: ../myServer/home.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QWidget \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qwidget.h \
@@ -336,19 +364,70 @@ release/moc_home.cpp: ../myServer/home.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QTimer \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtimer.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbasictimer.h \
+		../myServer/login/login.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMainWindow \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmainwindow.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qicon.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMessageBox \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmessagebox.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qdialog.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QJsonDocument \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qjsondocument.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qjsonvalue.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QFile \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QJsonObject \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qjsonobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QByteArray \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QMovie \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qmovie.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qimagereader.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcoreapplication.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qeventloop.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qimageiohandler.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qplugin.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpointer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfactoryinterface.h \
 		../myServer/serial/serial.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QPushButton \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qpushbutton.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qabstractbutton.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qicon.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPort \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialport.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportglobal.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPortInfo \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportinfo.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMainWindow \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmainwindow.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
+		../myServer/music/music.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QString \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QPixmap \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QPalette \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/QMediaPlayer \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaplayer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qtmultimediaglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qtmultimedia-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmultimedia.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediacontent.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaresource.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qnetworkrequest.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetworkglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetwork-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QSharedDataPointer \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QUrl \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QVariant \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaenumdebug.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmetaobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qaudio.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qnetworkconfiguration.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QDir \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdir.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfileinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QFileInfo \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QPropertyAnimation \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpropertyanimation.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvariantanimation.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qeasingcurve.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qabstractanimation.h \
 		../myServer/tcp/tcpserver.h \
 		../myServer/tcp/tcpserver_thread.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QThread \
@@ -356,8 +435,6 @@ release/moc_home.cpp: ../myServer/home.h \
 		../myServer/tcp/tcpsocket.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/QTcpSocket \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtcpsocket.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetworkglobal.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetwork-config.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qabstractsocket.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/QHostAddress \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qhostaddress.h \
@@ -367,16 +444,8 @@ release/moc_home.cpp: ../myServer/home.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtcpserver.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/QNetworkInterface \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qnetworkinterface.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMessageBox \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmessagebox.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qdialog.h \
 		../myServer/device/device_ac.h \
 		../myServer/my_custom/digital_scroller.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QPropertyAnimation \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpropertyanimation.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvariantanimation.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qeasingcurve.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qabstractanimation.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QPainter \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpainter.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtextoption.h \
@@ -401,7 +470,7 @@ release/moc_home.cpp: ../myServer/home.h \
 		../myServer/device/device_fan.h \
 		release/moc_predefs.h \
 		D:/Qt/content/5.14.2/mingw73_32/bin/moc.exe
-	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\home.h -o release\moc_home.cpp
+	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\home.h -o release\moc_home.cpp
 
 release/moc_device_ac.cpp: ../myServer/device/device_ac.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QWidget \
@@ -562,7 +631,7 @@ release/moc_device_ac.cpp: ../myServer/device/device_ac.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
 		release/moc_predefs.h \
 		D:/Qt/content/5.14.2/mingw73_32/bin/moc.exe
-	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\device\device_ac.h -o release\moc_device_ac.cpp
+	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\device\device_ac.h -o release\moc_device_ac.cpp
 
 release/moc_device_curtain.cpp: ../myServer/device/device_curtain.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QWidget \
@@ -703,9 +772,171 @@ release/moc_device_curtain.cpp: ../myServer/device/device_curtain.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qcolor \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtimer \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdebug \
+		../myServer/serial/serial.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QPushButton \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qpushbutton.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qabstractbutton.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qicon.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPort \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialport.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPortInfo \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMainWindow \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmainwindow.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
 		release/moc_predefs.h \
 		D:/Qt/content/5.14.2/mingw73_32/bin/moc.exe
-	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\device\device_curtain.h -o release\moc_device_curtain.cpp
+	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\device\device_curtain.h -o release\moc_device_curtain.cpp
+
+release/moc_music.cpp: ../myServer/music/music.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMainWindow \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmainwindow.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtwidgetsglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtguiglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qconfig-bootstrapped.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qconfig.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtcore-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsystemdetection.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qprocessordetection.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcompilerdetection.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtypeinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsysinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qlogging.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qflags.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qatomic.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbasicatomic.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qatomic_bootstrap.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qgenericatomic.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qatomic_cxx11.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qatomic_msvc.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qglobalstatic.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmutex.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qnumeric.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qversiontagging.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtgui-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtwidgets-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qwidget.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qwindowdefs.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qobjectdefs.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qnamespace.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qobjectdefs_impl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qwindowdefs_win.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstring.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qchar.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbytearray.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qrefcount.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qarraydata.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringliteral.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringalgorithms.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringview.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringbuilder.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qlist.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qalgorithms.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qiterator.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qhashfunctions.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpair.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvector.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcontainertools_impl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpoint.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbytearraylist.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringlist.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qregexp.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringmatcher.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcoreevent.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qscopedpointer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmetatype.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvarlengtharray.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcontainerfwd.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qobject_impl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmargins.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpaintdevice.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qrect.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsize.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpalette.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qcolor.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qrgb.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qrgba64.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qbrush.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qmatrix.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpolygon.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qregion.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdatastream.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qiodevice.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qline.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtransform.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpainterpath.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qimage.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpixelformat.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpixmap.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsharedpointer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qshareddata.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qhash.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsharedpointer_impl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qfont.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qfontmetrics.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qfontinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qsizepolicy.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qcursor.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qkeysequence.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qevent.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvariant.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmap.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdebug.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtextstream.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qlocale.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qset.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcontiguouscache.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qurl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qurlquery.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfile.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfiledevice.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qvector2d.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtouchdevice.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qicon.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QString \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QPixmap \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QPalette \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/QMediaPlayer \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaplayer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qtmultimediaglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qtmultimedia-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmultimedia.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediacontent.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaresource.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qnetworkrequest.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetworkglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetwork-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QSharedDataPointer \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QUrl \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QVariant \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaenumdebug.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmetaobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qaudio.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qnetworkconfiguration.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QTimer \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtimer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbasictimer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QDir \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdir.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfileinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QFile \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QFileInfo \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMessageBox \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmessagebox.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qdialog.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QPropertyAnimation \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpropertyanimation.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvariantanimation.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qeasingcurve.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qabstractanimation.h \
+		release/moc_predefs.h \
+		D:/Qt/content/5.14.2/mingw73_32/bin/moc.exe
+	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\music\music.h -o release\moc_music.cpp
 
 release/moc_digital_scroller.cpp: ../myServer/my_custom/digital_scroller.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QWidget \
@@ -831,7 +1062,7 @@ release/moc_digital_scroller.cpp: ../myServer/my_custom/digital_scroller.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbasictimer.h \
 		release/moc_predefs.h \
 		D:/Qt/content/5.14.2/mingw73_32/bin/moc.exe
-	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\my_custom\digital_scroller.h -o release\moc_digital_scroller.cpp
+	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\my_custom\digital_scroller.h -o release\moc_digital_scroller.cpp
 
 release/moc_sliderbutton.cpp: ../myServer/my_custom/sliderbutton.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qwidget \
@@ -953,7 +1184,7 @@ release/moc_sliderbutton.cpp: ../myServer/my_custom/sliderbutton.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdebug \
 		release/moc_predefs.h \
 		D:/Qt/content/5.14.2/mingw73_32/bin/moc.exe
-	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\my_custom\sliderbutton.h -o release\moc_sliderbutton.cpp
+	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\my_custom\sliderbutton.h -o release\moc_sliderbutton.cpp
 
 release/moc_serial.cpp: ../myServer/serial/serial.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QDebug \
@@ -1075,7 +1306,7 @@ release/moc_serial.cpp: ../myServer/serial/serial.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
 		release/moc_predefs.h \
 		D:/Qt/content/5.14.2/mingw73_32/bin/moc.exe
-	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\serial\serial.h -o release\moc_serial.cpp
+	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\serial\serial.h -o release\moc_serial.cpp
 
 release/moc_serial1.cpp: ../myServer/serial/serial1.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QDebug \
@@ -1150,7 +1381,7 @@ release/moc_serial1.cpp: ../myServer/serial/serial1.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportinfo.h \
 		release/moc_predefs.h \
 		D:/Qt/content/5.14.2/mingw73_32/bin/moc.exe
-	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\serial\serial1.h -o release\moc_serial1.cpp
+	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\serial\serial1.h -o release\moc_serial1.cpp
 
 release/moc_tcpserver.cpp: ../myServer/tcp/tcpserver.h \
 		../myServer/tcp/tcpserver_thread.h \
@@ -1279,7 +1510,7 @@ release/moc_tcpserver.cpp: ../myServer/tcp/tcpserver.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtouchdevice.h \
 		release/moc_predefs.h \
 		D:/Qt/content/5.14.2/mingw73_32/bin/moc.exe
-	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\tcp\tcpserver.h -o release\moc_tcpserver.cpp
+	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\tcp\tcpserver.h -o release\moc_tcpserver.cpp
 
 release/moc_tcpserver_thread.cpp: ../myServer/tcp/tcpserver_thread.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QThread \
@@ -1362,7 +1593,7 @@ release/moc_tcpserver_thread.cpp: ../myServer/tcp/tcpserver_thread.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QMap \
 		release/moc_predefs.h \
 		D:/Qt/content/5.14.2/mingw73_32/bin/moc.exe
-	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\tcp\tcpserver_thread.h -o release\moc_tcpserver_thread.cpp
+	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\tcp\tcpserver_thread.h -o release\moc_tcpserver_thread.cpp
 
 release/moc_tcpsocket.cpp: ../myServer/tcp/tcpsocket.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/QTcpSocket \
@@ -1441,7 +1672,7 @@ release/moc_tcpsocket.cpp: ../myServer/tcp/tcpsocket.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QMap \
 		release/moc_predefs.h \
 		D:/Qt/content/5.14.2/mingw73_32/bin/moc.exe
-	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\tcp\tcpsocket.h -o release\moc_tcpsocket.cpp
+	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\tcp\tcpsocket.h -o release\moc_tcpsocket.cpp
 
 release/moc_device_lamp.cpp: ../myServer/device/device_lamp.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QWidget \
@@ -1565,9 +1796,23 @@ release/moc_device_lamp.cpp: ../myServer/device/device_lamp.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtimer.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbasictimer.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdebug \
+		../myServer/serial/serial.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QDebug \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QPushButton \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qpushbutton.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qabstractbutton.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qicon.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPort \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialport.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPortInfo \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMainWindow \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmainwindow.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
 		release/moc_predefs.h \
 		D:/Qt/content/5.14.2/mingw73_32/bin/moc.exe
-	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\device\device_lamp.h -o release\moc_device_lamp.cpp
+	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\device\device_lamp.h -o release\moc_device_lamp.cpp
 
 release/moc_device_fan.cpp: ../myServer/device/device_fan.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QWidget \
@@ -1691,17 +1936,164 @@ release/moc_device_fan.cpp: ../myServer/device/device_fan.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtimer.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbasictimer.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdebug \
+		../myServer/serial/serial.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QDebug \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QPushButton \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qpushbutton.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qabstractbutton.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qicon.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPort \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialport.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPortInfo \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMainWindow \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmainwindow.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
 		release/moc_predefs.h \
 		D:/Qt/content/5.14.2/mingw73_32/bin/moc.exe
-	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\device\device_fan.h -o release\moc_device_fan.cpp
+	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\device\device_fan.h -o release\moc_device_fan.cpp
+
+release/moc_login.cpp: ../myServer/login/login.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMainWindow \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmainwindow.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtwidgetsglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtguiglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qconfig-bootstrapped.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qconfig.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtcore-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsystemdetection.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qprocessordetection.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcompilerdetection.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtypeinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsysinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qlogging.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qflags.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qatomic.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbasicatomic.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qatomic_bootstrap.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qgenericatomic.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qatomic_cxx11.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qatomic_msvc.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qglobalstatic.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmutex.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qnumeric.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qversiontagging.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtgui-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtwidgets-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qwidget.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qwindowdefs.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qobjectdefs.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qnamespace.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qobjectdefs_impl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qwindowdefs_win.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstring.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qchar.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbytearray.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qrefcount.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qarraydata.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringliteral.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringalgorithms.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringview.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringbuilder.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qlist.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qalgorithms.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qiterator.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qhashfunctions.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpair.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvector.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcontainertools_impl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpoint.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbytearraylist.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringlist.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qregexp.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringmatcher.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcoreevent.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qscopedpointer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmetatype.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvarlengtharray.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcontainerfwd.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qobject_impl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmargins.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpaintdevice.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qrect.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsize.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpalette.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qcolor.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qrgb.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qrgba64.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qbrush.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qmatrix.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpolygon.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qregion.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdatastream.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qiodevice.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qline.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtransform.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpainterpath.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qimage.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpixelformat.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpixmap.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsharedpointer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qshareddata.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qhash.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsharedpointer_impl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qfont.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qfontmetrics.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qfontinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qsizepolicy.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qcursor.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qkeysequence.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qevent.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvariant.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmap.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdebug.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtextstream.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qlocale.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qset.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcontiguouscache.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qurl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qurlquery.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfile.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfiledevice.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qvector2d.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtouchdevice.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qicon.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QWidget \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMessageBox \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmessagebox.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qdialog.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QJsonDocument \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qjsondocument.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qjsonvalue.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QFile \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QDebug \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QJsonObject \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qjsonobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QByteArray \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QMovie \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qmovie.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qimagereader.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcoreapplication.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qeventloop.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qimageiohandler.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qplugin.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpointer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfactoryinterface.h \
+		release/moc_predefs.h \
+		D:/Qt/content/5.14.2/mingw73_32/bin/moc.exe
+	D:\Qt\content\5.14.2\mingw73_32\bin\moc.exe $(DEFINES) --include D:/1/learning/QT_proj/qt_smart_home-master/code/build-qt_smart_home-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/release/moc_predefs.h -ID:/Qt/content/5.14.2/mingw73_32/mkspecs/win32-g++ -ID:/1/learning/QT_proj/qt_smart_home-master/code/myServer -ID:/Qt/content/5.14.2/mingw73_32/include -ID:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia -ID:/Qt/content/5.14.2/mingw73_32/include/QtWidgets -ID:/Qt/content/5.14.2/mingw73_32/include/QtGui -ID:/Qt/content/5.14.2/mingw73_32/include/QtANGLE -ID:/Qt/content/5.14.2/mingw73_32/include/QtNetwork -ID:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort -ID:/Qt/content/5.14.2/mingw73_32/include/QtCore -I. -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/content/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/content/Tools/mingw730_32/i686-w64-mingw32/include ..\myServer\login\login.h -o release\moc_login.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_home.h ui_device_ac.h ui_device_curtain.h ui_digital_scroller.h ui_device_lamp.h ui_device_fan.h ui_serial.h
+compiler_uic_make_all: ui_home.h ui_device_ac.h ui_device_curtain.h ui_music.h ui_digital_scroller.h ui_device_lamp.h ui_device_fan.h ui_serial.h ui_login.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_home.h ui_device_ac.h ui_device_curtain.h ui_digital_scroller.h ui_device_lamp.h ui_device_fan.h ui_serial.h
+	-$(DEL_FILE) ui_home.h ui_device_ac.h ui_device_curtain.h ui_music.h ui_digital_scroller.h ui_device_lamp.h ui_device_fan.h ui_serial.h ui_login.h
 ui_home.h: ../myServer/home.ui \
 		D:/Qt/content/5.14.2/mingw73_32/bin/uic.exe
 	D:\Qt\content\5.14.2\mingw73_32\bin\uic.exe ..\myServer\home.ui -o ui_home.h
@@ -1713,6 +2105,10 @@ ui_device_ac.h: ../myServer/device/device_ac.ui \
 ui_device_curtain.h: ../myServer/device/device_curtain.ui \
 		D:/Qt/content/5.14.2/mingw73_32/bin/uic.exe
 	D:\Qt\content\5.14.2\mingw73_32\bin\uic.exe ..\myServer\device\device_curtain.ui -o ui_device_curtain.h
+
+ui_music.h: ../myServer/music/music.ui \
+		D:/Qt/content/5.14.2/mingw73_32/bin/uic.exe
+	D:\Qt\content\5.14.2\mingw73_32\bin\uic.exe ..\myServer\music\music.ui -o ui_music.h
 
 ui_digital_scroller.h: ../myServer/my_custom/digital_scroller.ui \
 		D:/Qt/content/5.14.2/mingw73_32/bin/uic.exe
@@ -1729,6 +2125,10 @@ ui_device_fan.h: ../myServer/device/device_fan.ui \
 ui_serial.h: ../myServer/serial/serial.ui \
 		D:/Qt/content/5.14.2/mingw73_32/bin/uic.exe
 	D:\Qt\content\5.14.2\mingw73_32\bin\uic.exe ..\myServer\serial\serial.ui -o ui_serial.h
+
+ui_login.h: ../myServer/login/login.ui \
+		D:/Qt/content/5.14.2/mingw73_32/bin/uic.exe
+	D:\Qt\content\5.14.2\mingw73_32\bin\uic.exe ..\myServer\login\login.ui -o ui_login.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -1854,19 +2254,70 @@ release/main.o: ../myServer/main.cpp ../myServer/home.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QTimer \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtimer.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbasictimer.h \
+		../myServer/login/login.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMainWindow \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmainwindow.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qicon.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMessageBox \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmessagebox.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qdialog.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QJsonDocument \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qjsondocument.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qjsonvalue.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QFile \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QJsonObject \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qjsonobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QByteArray \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QMovie \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qmovie.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qimagereader.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcoreapplication.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qeventloop.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qimageiohandler.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qplugin.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpointer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfactoryinterface.h \
 		../myServer/serial/serial.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QPushButton \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qpushbutton.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qabstractbutton.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qicon.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPort \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialport.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportglobal.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPortInfo \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportinfo.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMainWindow \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmainwindow.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
+		../myServer/music/music.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QString \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QPixmap \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QPalette \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/QMediaPlayer \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaplayer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qtmultimediaglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qtmultimedia-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmultimedia.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediacontent.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaresource.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qnetworkrequest.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetworkglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetwork-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QSharedDataPointer \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QUrl \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QVariant \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaenumdebug.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmetaobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qaudio.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qnetworkconfiguration.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QDir \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdir.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfileinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QFileInfo \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QPropertyAnimation \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpropertyanimation.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvariantanimation.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qeasingcurve.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qabstractanimation.h \
 		../myServer/tcp/tcpserver.h \
 		../myServer/tcp/tcpserver_thread.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QThread \
@@ -1874,8 +2325,6 @@ release/main.o: ../myServer/main.cpp ../myServer/home.h \
 		../myServer/tcp/tcpsocket.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/QTcpSocket \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtcpsocket.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetworkglobal.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetwork-config.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qabstractsocket.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/QHostAddress \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qhostaddress.h \
@@ -1885,16 +2334,8 @@ release/main.o: ../myServer/main.cpp ../myServer/home.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtcpserver.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/QNetworkInterface \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qnetworkinterface.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMessageBox \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmessagebox.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qdialog.h \
 		../myServer/device/device_ac.h \
 		../myServer/my_custom/digital_scroller.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QPropertyAnimation \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpropertyanimation.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvariantanimation.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qeasingcurve.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qabstractanimation.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QPainter \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpainter.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtextoption.h \
@@ -1919,8 +2360,6 @@ release/main.o: ../myServer/main.cpp ../myServer/home.h \
 		../myServer/device/device_fan.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QApplication \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qapplication.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcoreapplication.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qeventloop.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qdesktopwidget.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qguiapplication.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qinputmethod.h \
@@ -2042,19 +2481,70 @@ release/home.o: ../myServer/home.cpp ../myServer/home.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QTimer \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtimer.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbasictimer.h \
+		../myServer/login/login.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMainWindow \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmainwindow.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qicon.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMessageBox \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmessagebox.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qdialog.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QJsonDocument \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qjsondocument.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qjsonvalue.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QFile \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QJsonObject \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qjsonobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QByteArray \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QMovie \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qmovie.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qimagereader.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcoreapplication.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qeventloop.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qimageiohandler.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qplugin.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpointer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfactoryinterface.h \
 		../myServer/serial/serial.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QPushButton \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qpushbutton.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qabstractbutton.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qicon.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPort \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialport.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportglobal.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPortInfo \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportinfo.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMainWindow \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmainwindow.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
+		../myServer/music/music.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QString \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QPixmap \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QPalette \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/QMediaPlayer \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaplayer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qtmultimediaglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qtmultimedia-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmultimedia.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediacontent.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaresource.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qnetworkrequest.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetworkglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetwork-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QSharedDataPointer \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QUrl \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QVariant \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaenumdebug.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmetaobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qaudio.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qnetworkconfiguration.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QDir \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdir.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfileinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QFileInfo \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QPropertyAnimation \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpropertyanimation.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvariantanimation.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qeasingcurve.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qabstractanimation.h \
 		../myServer/tcp/tcpserver.h \
 		../myServer/tcp/tcpserver_thread.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QThread \
@@ -2062,8 +2552,6 @@ release/home.o: ../myServer/home.cpp ../myServer/home.h \
 		../myServer/tcp/tcpsocket.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/QTcpSocket \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtcpsocket.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetworkglobal.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetwork-config.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qabstractsocket.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/QHostAddress \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qhostaddress.h \
@@ -2073,16 +2561,8 @@ release/home.o: ../myServer/home.cpp ../myServer/home.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtcpserver.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/QNetworkInterface \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qnetworkinterface.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMessageBox \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmessagebox.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qdialog.h \
 		../myServer/device/device_ac.h \
 		../myServer/my_custom/digital_scroller.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QPropertyAnimation \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpropertyanimation.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvariantanimation.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qeasingcurve.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qabstractanimation.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QPainter \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpainter.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtextoption.h \
@@ -2106,11 +2586,8 @@ release/home.o: ../myServer/home.cpp ../myServer/home.h \
 		../myServer/device/device_lamp.h \
 		../myServer/device/device_fan.h \
 		ui_home.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QVariant \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QApplication \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qapplication.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcoreapplication.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qeventloop.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qdesktopwidget.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qguiapplication.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qinputmethod.h \
@@ -2430,6 +2907,19 @@ release/device_curtain.o: ../myServer/device/device_curtain.cpp ../myServer/devi
 		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qcolor \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtimer \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdebug \
+		../myServer/serial/serial.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QPushButton \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qpushbutton.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qabstractbutton.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qicon.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPort \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialport.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPortInfo \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMainWindow \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmainwindow.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
 		ui_device_curtain.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QVariant \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QApplication \
@@ -2447,12 +2937,200 @@ release/device_curtain.o: ../myServer/device/device_curtain.cpp ../myServer/devi
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qlayoutitem.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qboxlayout.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QLabel \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qlabel.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\device_curtain.o ..\myServer\device\device_curtain.cpp
+
+release/music.o: ../myServer/music/music.cpp ../myServer/music/music.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMainWindow \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmainwindow.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtwidgetsglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtguiglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qconfig-bootstrapped.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qconfig.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtcore-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsystemdetection.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qprocessordetection.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcompilerdetection.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtypeinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsysinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qlogging.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qflags.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qatomic.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbasicatomic.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qatomic_bootstrap.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qgenericatomic.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qatomic_cxx11.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qatomic_msvc.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qglobalstatic.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmutex.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qnumeric.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qversiontagging.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtgui-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtwidgets-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qwidget.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qwindowdefs.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qobjectdefs.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qnamespace.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qobjectdefs_impl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qwindowdefs_win.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstring.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qchar.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbytearray.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qrefcount.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qarraydata.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringliteral.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringalgorithms.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringview.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringbuilder.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qlist.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qalgorithms.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qiterator.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qhashfunctions.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpair.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvector.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcontainertools_impl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpoint.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbytearraylist.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringlist.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qregexp.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringmatcher.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcoreevent.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qscopedpointer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmetatype.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvarlengtharray.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcontainerfwd.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qobject_impl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmargins.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpaintdevice.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qrect.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsize.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpalette.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qcolor.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qrgb.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qrgba64.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qbrush.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qmatrix.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpolygon.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qregion.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdatastream.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qiodevice.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qline.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtransform.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpainterpath.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qimage.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpixelformat.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpixmap.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsharedpointer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qshareddata.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qhash.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsharedpointer_impl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qfont.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qfontmetrics.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qfontinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qsizepolicy.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qcursor.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qkeysequence.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qevent.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvariant.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmap.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdebug.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtextstream.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qlocale.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qset.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcontiguouscache.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qurl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qurlquery.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfile.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfiledevice.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qvector2d.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtouchdevice.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qicon.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QString \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QPixmap \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QPalette \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/QMediaPlayer \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaplayer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qtmultimediaglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qtmultimedia-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmultimedia.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediacontent.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaresource.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qnetworkrequest.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetworkglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetwork-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QSharedDataPointer \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QUrl \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QVariant \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaenumdebug.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmetaobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qaudio.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qnetworkconfiguration.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QTimer \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtimer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbasictimer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QDir \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdir.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfileinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QFile \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QFileInfo \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMessageBox \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmessagebox.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qdialog.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QPropertyAnimation \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpropertyanimation.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvariantanimation.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qeasingcurve.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qabstractanimation.h \
+		ui_music.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QApplication \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qapplication.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcoreapplication.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qeventloop.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qdesktopwidget.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qguiapplication.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qinputmethod.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QHBoxLayout \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qboxlayout.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qlayout.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qlayoutitem.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qgridlayout.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QLabel \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qlabel.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qframe.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QListWidget \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qlistwidget.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qlistview.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qabstractitemview.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qabstractscrollarea.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qabstractitemmodel.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qitemselectionmodel.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qabstractitemdelegate.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qstyleoption.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qabstractspinbox.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qvalidator.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qregularexpression.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qslider.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qabstractslider.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qstyle.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabbar.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qrubberband.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMenuBar \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmenubar.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmenu.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qaction.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qactiongroup.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QPushButton \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qpushbutton.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qabstractbutton.h \
-		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qicon.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\device_curtain.o ..\myServer\device\device_curtain.cpp
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QSlider \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QStatusBar \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qstatusbar.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QWidget
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\music.o ..\myServer\music\music.cpp
 
 release/digital_scroller.o: ../myServer/my_custom/digital_scroller.cpp ../myServer/my_custom/digital_scroller.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QWidget \
@@ -3402,6 +4080,20 @@ release/device_lamp.o: ../myServer/device/device_lamp.cpp ../myServer/device/dev
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtimer.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbasictimer.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdebug \
+		../myServer/serial/serial.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QDebug \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QPushButton \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qpushbutton.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qabstractbutton.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qicon.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPort \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialport.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPortInfo \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMainWindow \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmainwindow.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
 		ui_device_lamp.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QVariant \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QApplication \
@@ -3544,6 +4236,20 @@ release/device_fan.o: ../myServer/device/device_fan.cpp ../myServer/device/devic
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtimer.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbasictimer.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdebug \
+		../myServer/serial/serial.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QDebug \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QPushButton \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qpushbutton.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qabstractbutton.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qicon.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPort \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialport.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPortInfo \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMainWindow \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmainwindow.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
 		ui_device_fan.h \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QVariant \
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QApplication \
@@ -3564,6 +4270,245 @@ release/device_fan.o: ../myServer/device/device_fan.cpp ../myServer/device/devic
 		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qlabel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\device_fan.o ..\myServer\device\device_fan.cpp
 
+release/login.o: ../myServer/login/login.cpp ../myServer/login/login.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMainWindow \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmainwindow.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtwidgetsglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtguiglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qconfig-bootstrapped.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qconfig.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtcore-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsystemdetection.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qprocessordetection.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcompilerdetection.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtypeinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsysinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qlogging.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qflags.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qatomic.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbasicatomic.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qatomic_bootstrap.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qgenericatomic.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qatomic_cxx11.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qatomic_msvc.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qglobalstatic.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmutex.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qnumeric.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qversiontagging.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtgui-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtwidgets-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qwidget.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qwindowdefs.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qobjectdefs.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qnamespace.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qobjectdefs_impl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qwindowdefs_win.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstring.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qchar.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbytearray.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qrefcount.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qarraydata.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringliteral.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringalgorithms.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringview.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringbuilder.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qlist.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qalgorithms.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qiterator.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qhashfunctions.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpair.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvector.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcontainertools_impl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpoint.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbytearraylist.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringlist.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qregexp.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qstringmatcher.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcoreevent.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qscopedpointer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmetatype.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvarlengtharray.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcontainerfwd.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qobject_impl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmargins.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpaintdevice.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qrect.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsize.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpalette.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qcolor.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qrgb.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qrgba64.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qbrush.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qmatrix.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpolygon.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qregion.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdatastream.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qiodevice.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qline.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtransform.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpainterpath.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qimage.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpixelformat.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpixmap.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsharedpointer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qshareddata.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qhash.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qsharedpointer_impl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qfont.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qfontmetrics.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qfontinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qsizepolicy.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qcursor.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qkeysequence.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qevent.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvariant.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmap.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdebug.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtextstream.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qlocale.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qset.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcontiguouscache.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qurl.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qurlquery.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfile.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfiledevice.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qvector2d.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtouchdevice.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qtabwidget.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qicon.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QWidget \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMessageBox \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmessagebox.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qdialog.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QJsonDocument \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qjsondocument.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qjsonvalue.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QFile \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QDebug \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QJsonObject \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qjsonobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QByteArray \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QMovie \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qmovie.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qimagereader.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qcoreapplication.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qeventloop.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qimageiohandler.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qplugin.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpointer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfactoryinterface.h \
+		ui_login.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QVariant \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QApplication \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qapplication.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qdesktopwidget.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qguiapplication.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qinputmethod.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QCheckBox \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qcheckbox.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qabstractbutton.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QGroupBox \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qgroupbox.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qframe.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QLabel \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qlabel.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QLineEdit \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qlineedit.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtextcursor.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtextformat.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpen.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qtextoption.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QMenuBar \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmenubar.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qmenu.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qaction.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qactiongroup.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QPushButton \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qpushbutton.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/QStatusBar \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qstatusbar.h \
+		../myServer/home.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QTime \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdatetime.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QDateTime \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QTimer \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtimer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qbasictimer.h \
+		../myServer/serial/serial.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPort \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialport.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/QSerialPortInfo \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtSerialPort/qserialportinfo.h \
+		../myServer/music/music.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QString \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QPixmap \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QPalette \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/QMediaPlayer \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaplayer.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qtmultimediaglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qtmultimedia-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmultimedia.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediacontent.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaresource.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qnetworkrequest.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetworkglobal.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtnetwork-config.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QSharedDataPointer \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QUrl \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qmediaenumdebug.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qmetaobject.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtMultimedia/qaudio.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qnetworkconfiguration.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QDir \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdir.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qfileinfo.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QFileInfo \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QPropertyAnimation \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qpropertyanimation.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qvariantanimation.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qeasingcurve.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qabstractanimation.h \
+		../myServer/tcp/tcpserver.h \
+		../myServer/tcp/tcpserver_thread.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QThread \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qthread.h \
+		../myServer/tcp/tcpsocket.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/QTcpSocket \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtcpsocket.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qabstractsocket.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/QHostAddress \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qhostaddress.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QStringList \
+		../myServer/my_custom/global.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QMap \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qtcpserver.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/QNetworkInterface \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtNetwork/qnetworkinterface.h \
+		../myServer/device/device_ac.h \
+		../myServer/my_custom/digital_scroller.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QPainter \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpainter.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/QMouseEvent \
+		../myServer/my_custom/sliderbutton.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtWidgets/qwidget \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qmouseevent \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpaintevent \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpainter \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpen \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qpainterpath \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtGui/qcolor \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qtimer \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/qdebug \
+		../myServer/device/device_curtain.h \
+		D:/Qt/content/5.14.2/mingw73_32/include/QtCore/QAbstractAnimation \
+		../myServer/device/device_lamp.h \
+		../myServer/device/device_fan.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\login.o ..\myServer\login\login.cpp
+
 release/qrc_pic.o: release/qrc_pic.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\qrc_pic.o release\qrc_pic.cpp
 
@@ -3575,6 +4520,9 @@ release/moc_device_ac.o: release/moc_device_ac.cpp
 
 release/moc_device_curtain.o: release/moc_device_curtain.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_device_curtain.o release\moc_device_curtain.cpp
+
+release/moc_music.o: release/moc_music.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_music.o release\moc_music.cpp
 
 release/moc_digital_scroller.o: release/moc_digital_scroller.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_digital_scroller.o release\moc_digital_scroller.cpp
@@ -3602,6 +4550,9 @@ release/moc_device_lamp.o: release/moc_device_lamp.cpp
 
 release/moc_device_fan.o: release/moc_device_fan.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_device_fan.o release\moc_device_fan.cpp
+
+release/moc_login.o: release/moc_login.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_login.o release\moc_login.cpp
 
 ####### Install
 

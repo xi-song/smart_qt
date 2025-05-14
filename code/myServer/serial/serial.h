@@ -22,12 +22,13 @@ public:
     void serialSet();
     int room_name;
     void serialSend(QString &data);
+     QSerialPort *Myserial;
 private slots:
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
 private:
     Ui::serial *ui;
-    QSerialPort *Myserial;
+
 };
 
 #endif // SERIAL_H

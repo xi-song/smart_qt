@@ -226,8 +226,9 @@ void DeviceAC::slot_btn_click(void)
 void DeviceAC::slot_slider_ON(void)
 {
     qDebug() << "空调开";
-    QString data="00";
+
     emit sig_sendData(g_socket_map.value(room_name),"<*06,102,01*>");
+    QString data="00";
     my_serial->serialSend(data);
 
     ui->btn_auto->setCheckable(true);

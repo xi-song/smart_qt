@@ -2,6 +2,7 @@ release/main.o
 release/home.o
 release/device_ac.o
 release/device_curtain.o
+release/music.o
 release/digital_scroller.o
 release/global.o
 release/sliderbutton.o
@@ -12,10 +13,12 @@ release/tcpserver_thread.o
 release/tcpsocket.o
 release/device_lamp.o
 release/device_fan.o
+release/login.o
 release/qrc_pic.o
 release/moc_home.o
 release/moc_device_ac.o
 release/moc_device_curtain.o
+release/moc_music.o
 release/moc_digital_scroller.o
 release/moc_sliderbutton.o
 release/moc_serial.o
@@ -25,3 +28,4 @@ release/moc_tcpserver_thread.o
 release/moc_tcpsocket.o
 release/moc_device_lamp.o
 release/moc_device_fan.o
+release/moc_login.o
