@@ -96,6 +96,9 @@ void DeviceAC::slot_temp_value_channged(int value)
     QString sendData = "<*06,103," + QString::number(value) + "*>";
     emit sig_sendData(g_socket_map.value(room_name),sendData);
 
+    QString data = "9412" + QString::number(value);
+    my_serial->serialSend(data);
+
 }
 
 
@@ -200,14 +203,14 @@ void DeviceAC::slot_btn_click(void)
 
     // 根据按钮名称发送对应的指令
        QHash<QString, QString> commandMap = {
-           {"btn_auto", "0600"},
-           {"btn_dry",  "0601"},
-           {"btn_cold", "0602"},
-           {"btn_wind", "0603"},
-           {"btn_xiao", "0610"},
-           {"btn_low",  "0611"},
-           {"btn_mid",  "0612"},
-           {"btn_high", "0613"}
+           {"btn_auto", "941300"},
+           {"btn_dry",  "941301"},
+           {"btn_cold", "941302"},
+           {"btn_wind", "941303"},
+           {"btn_xiao", "941400"},
+           {"btn_low",  "941401"},
+           {"btn_mid",  "941402"},
+           {"btn_high", "941403"}
        };
 
        if (commandMap.contains(btn_name)) {
@@ -228,7 +231,7 @@ void DeviceAC::slot_slider_ON(void)
     qDebug() << "空调开";
 
     emit sig_sendData(g_socket_map.value(room_name),"<*06,102,01*>");
-    QString data="00";
+    QString data="941100 ";
     my_serial->serialSend(data);
 
     ui->btn_auto->setCheckable(true);
@@ -275,7 +278,7 @@ void DeviceAC::slot_slider_OFF(void)
 {
     qDebug() << "空调关";
     emit sig_sendData(g_socket_map.value(room_name),"<*06,102,00*>");
-    QString data="01";
+    QString data="940100";
     my_serial->serialSend(data);
 
     ui->btn_auto->setChecked(false);

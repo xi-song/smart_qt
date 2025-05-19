@@ -1,10 +1,4 @@
-/*
- * @Description:  
- * @Author: ~光~~
- * @Date: 2025-04-22 18:30:00
- * @LastEditTime: 2025-04-23 13:13:54
- * @LastEditors:  
- */
+
 #include "home.h"
 #include "ui_home.h"
 Home::Home(QWidget *parent) :
@@ -131,6 +125,13 @@ void Home::on_pushButton_clicked()
 //    else
 //     ui->pushButton->setText("播放音乐");
     my_music->show();
+    QString data="911100";
+    my_serial->serialSend(data);
 
+}
 
+void Home::on_pushButton_2_clicked()
+{
+    QString data="910100";
+    my_serial->serialSend(data);
 }

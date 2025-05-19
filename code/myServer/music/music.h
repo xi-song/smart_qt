@@ -18,7 +18,7 @@
 #include<time.h>
 
 #include<QPropertyAnimation>//动画
-
+#include "serial/serial.h"
 
 namespace Ui {
 class music;
@@ -48,6 +48,7 @@ private:
 
     QMediaPlayer *m_player;
     PLAYMODE m_mode;//模式
+     serial * my_serial;
 private:
     void initButtons();//初始化按钮
     void setButtonStyle(QPushButton * button,const QString &filename);//设置按钮的样式

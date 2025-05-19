@@ -38,7 +38,7 @@ void DeviceLamp::slot_slider_ON(void)
 {
     qDebug() << "吊灯开";
     emit sig_sendData(g_socket_map.value(room_name),"<*06,100,01*>");
-    QString data="00";
+    QString data="921100";
     my_serial->serialSend(data);
 
     ui->label_lamp->setStyleSheet("border-image:url(:/png/light-open.png)");
@@ -55,7 +55,7 @@ void DeviceLamp::slot_slider_OFF(void)
 {
     qDebug() << "吊灯关";
     emit sig_sendData(g_socket_map.value(room_name),"<*06,100,00*>");
-    QString data="00";
+    QString data="920100";
     my_serial->serialSend(data);
 
     ui->label_lamp->setStyleSheet("border-image:url(:/png/light-close.png)");

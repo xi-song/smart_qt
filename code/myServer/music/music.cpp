@@ -192,15 +192,18 @@ void music::setBackground(const QString &filename){
 
 }
 void music::handlePlaySlot(){
+    int flag=1;
     if(m_player->state()==QMediaPlayer::PlayingState){//如果正在播放
         m_player->pause();
         ui->playBtn->setIcon(QIcon(":/icon/paly.png"));
+        flag=1;
 
     }else{
-
         m_player->play();
         ui->playBtn->setIcon(QIcon(":/icon/stop.png"));
+        flag=2;
     }
+
 }
 void music::handleModeSlot(){
     if(m_mode==ORDER_MODE){

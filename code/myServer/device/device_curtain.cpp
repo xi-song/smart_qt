@@ -84,6 +84,9 @@ void DeviceCurtain::on_btn_up_released()
 
         QString sendData = "<*06,107," + ui->lbl_data->text().replace(" %","") + "*>";
         emit sig_sendData(g_socket_map.value(room_name),sendData);
+
+        QString data="9512"+ui->lbl_data->text().replace(" %","");
+        my_serial->serialSend(data);
 }
 
 /***********************************
@@ -118,6 +121,9 @@ void DeviceCurtain::on_btn_down_released()
     QString sendData = "<*06,107," + ui->lbl_data->text().replace(" %","") + "*>";
     emit sig_sendData(g_socket_map.value(room_name),sendData);
 
+    QString data="9513"+ui->lbl_data->text().replace(" %","");
+    my_serial->serialSend(data);
+
 }
 
 /***********************************
@@ -131,8 +137,7 @@ void DeviceCurtain::slot_dataChanged(void)
     ui->lbl_data->setText(QString::number(scale) + " %");
 
 
-    QString data=QString::number(scale);
-    my_serial->serialSend(data);
+
 
 }
 
@@ -146,7 +151,7 @@ void DeviceCurtain::slot_slider_ON(void)
 {
     qDebug() << "百叶窗开";
     emit sig_sendData(g_socket_map.value(room_name),"<*06,106,01*>");
-    QString data="00";
+    QString data="951100";
     my_serial->serialSend(data);
 
 
@@ -171,7 +176,7 @@ void DeviceCurtain::slot_slider_OFF(void)
 {
     qDebug() << "百叶窗关";
     emit sig_sendData(g_socket_map.value(room_name),"<*06,106,00*>");
-    QString data="00";
+    QString data="950100";
     my_serial->serialSend(data);
 
 

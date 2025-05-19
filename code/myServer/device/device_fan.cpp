@@ -39,7 +39,7 @@ void DeviceFan::slot_slider_ON(void)
 {
     qDebug() << "风扇开";
     emit sig_sendData(g_socket_map.value(room_name),"<*06,101,01*>");
-    QString data="00";
+    QString data="931100";
     my_serial->serialSend(data);
 
 
@@ -61,7 +61,7 @@ void DeviceFan::slot_slider_OFF(void)
 {
     qDebug() << "风扇关";
     emit sig_sendData(g_socket_map.value(room_name),"<*06,101,00*>");
-    QString data="00";
+    QString data="930100";
     my_serial->serialSend(data);
 
     ui->label_fan->setStyleSheet("border-image:url(:/png/fun-close.png)");

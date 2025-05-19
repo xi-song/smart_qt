@@ -26,6 +26,7 @@ public:
     QLabel *label_status;
     QLabel *label_info;
     QPushButton *pushButton;
+    QPushButton *pushButton_2;
     QLabel *label_time_1;
     QLabel *label_time_2;
     QLabel *label_fenge;
@@ -67,6 +68,10 @@ public:
         font2.setBold(true);
         font2.setWeight(75);
         pushButton->setFont(font2);
+        pushButton_2 = new QPushButton(frame_left);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_2->setGeometry(QRect(20, 300, 221, 71));
+        pushButton_2->setFont(font2);
         label_time_1 = new QLabel(home);
         label_time_1->setObjectName(QString::fromUtf8("label_time_1"));
         label_time_1->setGeometry(QRect(1030, 30, 401, 101));
@@ -104,6 +109,7 @@ public:
         label_status->setText(QCoreApplication::translate("home", "\347\212\266\346\200\201\357\274\232\347\246\273\347\272\277", nullptr));
         label_info->setText(QCoreApplication::translate("home", "<html><head/><body><p><span style=\" font-weight:600;\">Hi~ \346\254\242\350\277\216\345\233\236\345\256\266</span></p><p><span style=\" font-weight:600;\">\347\264\257\344\272\206\344\270\200\345\244\251</span></p><p><span style=\" font-weight:600;\">\344\274\221\346\201\257\344\270\200\344\270\213\345\220\247~</span></p></body></html>", nullptr));
         pushButton->setText(QCoreApplication::translate("home", "\346\222\255\346\224\276\351\237\263\344\271\220", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("home", "\345\205\263\351\227\255\345\276\213\345\212\250", nullptr));
         label_time_1->setText(QCoreApplication::translate("home", "01:01", nullptr));
         label_time_2->setText(QCoreApplication::translate("home", "2023-01-01 \346\230\237\346\234\237\344\270\200", nullptr));
         label_fenge->setText(QCoreApplication::translate("home", "TextLabel", nullptr));

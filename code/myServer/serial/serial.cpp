@@ -74,14 +74,31 @@ void serial::serialSend(QString &data){
        Myserial->setStopBits(QSerialPort::OneStop);
        Myserial->open(QIODevice::ReadWrite);
 
+       QStringList list=data.split("\n");//把string按回车分割
 
     // 要发送的数字（以字符串形式）
        if (Myserial->isOpen()) {
-//             serialSet();
-               Myserial->write(data.toUtf8());
+//              serialSet();
+           for(int i=0;i<list.size();i++){
+                      if(list[i]=="") continue;
+                      list[i]+="\r\n";
+                      Myserial->write(list[i].toLocal8Bit());//转为数据流的形式
+                  }
+           Myserial->waitForBytesWritten(200);
+         //      Myserial->write(data.toUtf8());
                qDebug() << "已发送：" << data;
            } else {
                qDebug() << "串口未打开！";
            }
+//       QString str=ui->textEdit->toPlainText();//把textedit里面的全部变成string
+//       QStringList list=str.split("\n");//把string按回车分割
+//       for(int i=0;i<list.size();i++){
+//           if(list[i]=="") continue;
+//           list[i]+="\r\n";
+//           serial->write(list[i].toLocal8Bit());//转为数据流的形式
+//       }
+
+
+
         Myserial->close();
 }
