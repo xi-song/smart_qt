@@ -69,6 +69,8 @@ void DeviceCurtain::on_btn_up_pressed()
     aniamtion_up->setDuration(run_time);
     aniamtion_up->start();
 
+
+
     data_timer->start(100);
 }
 
@@ -84,9 +86,9 @@ void DeviceCurtain::on_btn_up_released()
 
         QString sendData = "<*06,107," + ui->lbl_data->text().replace(" %","") + "*>";
         emit sig_sendData(g_socket_map.value(room_name),sendData);
-
-        QString data="9512"+ui->lbl_data->text().replace(" %","");
+        QString data="951310";
         my_serial->serialSend(data);
+
 }
 
 /***********************************
@@ -96,6 +98,7 @@ void DeviceCurtain::on_btn_up_released()
 ***********************************/
 void DeviceCurtain::on_btn_down_pressed()
 {
+
     int start_x = ui->label_curtain->pos().x(); //动画开始x坐标
     int start_y = ui->label_curtain->pos().y(); //动画开始y坐标
     int end_x = ui->label_curtain->pos().x();   //动画结束x坐标
@@ -106,7 +109,10 @@ void DeviceCurtain::on_btn_down_pressed()
     aniamtion_down->setEndValue(QPoint(end_x,end_y));
     aniamtion_down->setDuration(run_time);
     aniamtion_down->start();
+
     data_timer->start(100);
+
+
 }
 /***********************************
  *名称：on_btn_down_released
@@ -120,9 +126,9 @@ void DeviceCurtain::on_btn_down_released()
 
     QString sendData = "<*06,107," + ui->lbl_data->text().replace(" %","") + "*>";
     emit sig_sendData(g_socket_map.value(room_name),sendData);
-
-    QString data="9513"+ui->lbl_data->text().replace(" %","");
+    QString data="951510";
     my_serial->serialSend(data);
+
 
 }
 
@@ -192,4 +198,18 @@ void DeviceCurtain::slot_slider_OFF(void)
     ui->label_onoff->setText("OFF");
 
 
+}
+
+void DeviceCurtain::on_pushButton_clicked()
+{
+    //开
+    QString data="951100";
+    my_serial->serialSend(data);
+}
+
+void DeviceCurtain::on_pushButton_2_clicked()
+{
+    //关
+    QString data="950100";
+    my_serial->serialSend(data);
 }

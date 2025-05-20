@@ -14,6 +14,7 @@
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -26,6 +27,8 @@ public:
     QLabel *label_text_fan;
     QLabel *label_fan;
     QLabel *label_onoff;
+    QPushButton *pushButton;
+    QPushButton *pushButton_2;
 
     void setupUi(QWidget *DeviceFan)
     {
@@ -49,6 +52,7 @@ public:
         label_fan = new QLabel(frame_background);
         label_fan->setObjectName(QString::fromUtf8("label_fan"));
         label_fan->setGeometry(QRect(0, 10, 171, 261));
+        label_fan->setCursor(QCursor(Qt::SizeVerCursor));
         label_fan->setStyleSheet(QString::fromUtf8("background-color: rgb(171, 171, 171);"));
         label_onoff = new QLabel(frame_background);
         label_onoff->setObjectName(QString::fromUtf8("label_onoff"));
@@ -57,6 +61,16 @@ public:
         font1.setPointSize(16);
         label_onoff->setFont(font1);
         label_onoff->setAlignment(Qt::AlignCenter);
+        pushButton = new QPushButton(frame_background);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setGeometry(QRect(200, 40, 61, 41));
+        QFont font2;
+        font2.setPointSize(14);
+        pushButton->setFont(font2);
+        pushButton_2 = new QPushButton(frame_background);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_2->setGeometry(QRect(200, 110, 61, 41));
+        pushButton_2->setFont(font2);
 
         gridLayout->addWidget(frame_background, 0, 0, 1, 1);
 
@@ -72,6 +86,8 @@ public:
         label_text_fan->setText(QCoreApplication::translate("DeviceFan", "\351\243\216\346\211\207", nullptr));
         label_fan->setText(QCoreApplication::translate("DeviceFan", "\351\243\216\346\211\207\345\233\276\347\211\207", nullptr));
         label_onoff->setText(QCoreApplication::translate("DeviceFan", "ON", nullptr));
+        pushButton->setText(QCoreApplication::translate("DeviceFan", "\345\274\200", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("DeviceFan", "\345\205\263", nullptr));
     } // retranslateUi
 
 };

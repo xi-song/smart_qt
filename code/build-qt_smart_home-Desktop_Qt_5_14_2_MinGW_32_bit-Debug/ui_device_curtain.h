@@ -32,6 +32,8 @@ public:
     QLabel *label_onoff;
     QPushButton *btn_up;
     QLabel *label_lan;
+    QPushButton *pushButton;
+    QPushButton *pushButton_2;
 
     void setupUi(QWidget *device_curtain)
     {
@@ -78,6 +80,16 @@ public:
         label_lan = new QLabel(frame_background);
         label_lan->setObjectName(QString::fromUtf8("label_lan"));
         label_lan->setGeometry(QRect(60, 190, 231, 31));
+        pushButton = new QPushButton(frame_background);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setGeometry(QRect(260, 70, 61, 41));
+        QFont font2;
+        font2.setPointSize(14);
+        pushButton->setFont(font2);
+        pushButton_2 = new QPushButton(frame_background);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_2->setGeometry(QRect(260, 140, 61, 41));
+        pushButton_2->setFont(font2);
 
         gridLayout->addWidget(frame_background, 0, 0, 1, 1);
 
@@ -97,6 +109,8 @@ public:
         label_onoff->setText(QCoreApplication::translate("device_curtain", "ON", nullptr));
         btn_up->setText(QString());
         label_lan->setText(QCoreApplication::translate("device_curtain", "\347\252\227\346\240\217", nullptr));
+        pushButton->setText(QCoreApplication::translate("device_curtain", "\345\274\200", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("device_curtain", "\345\205\263", nullptr));
     } // retranslateUi
 
 };

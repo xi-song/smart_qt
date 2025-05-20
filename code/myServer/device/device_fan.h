@@ -30,6 +30,9 @@ public slots:
 
 signals:
     void sig_sendData(int sockID,QString sendData);
+private slots:
+    void on_pushButton_clicked();
+    void on_pushButton_2_clicked();
 };
 
 #endif // DEVICE_FAN_H

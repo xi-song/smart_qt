@@ -46,6 +46,10 @@ private slots:
     void slot_slider_OFF(void);
     void slot_slider_ON(void);
 
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
 signals:
     void sig_sendData(int sockID,QString sendData);
 

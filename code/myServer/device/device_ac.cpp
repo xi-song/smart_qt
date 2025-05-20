@@ -96,8 +96,8 @@ void DeviceAC::slot_temp_value_channged(int value)
     QString sendData = "<*06,103," + QString::number(value) + "*>";
     emit sig_sendData(g_socket_map.value(room_name),sendData);
 
-    QString data = "9412" + QString::number(value);
-    my_serial->serialSend(data);
+//    QString data = "9412" + QString::number(value);
+//    my_serial->serialSend(data);
 
 }
 
@@ -215,9 +215,9 @@ void DeviceAC::slot_btn_click(void)
 
        if (commandMap.contains(btn_name)) {
               // 直接调用串口对象的发送函数
-             qDebug()<<commandMap[btn_name];
-              my_serial->serialSend(commandMap[btn_name]);
 
+               qDebug()<<commandMap[btn_name];
+                my_serial->serialSend(commandMap[btn_name]);
           }
 
 }
@@ -231,7 +231,7 @@ void DeviceAC::slot_slider_ON(void)
     qDebug() << "空调开";
 
     emit sig_sendData(g_socket_map.value(room_name),"<*06,102,01*>");
-    QString data="941100 ";
+    QString data="941100";
     my_serial->serialSend(data);
 
     ui->btn_auto->setCheckable(true);
@@ -279,7 +279,11 @@ void DeviceAC::slot_slider_OFF(void)
     qDebug() << "空调关";
     emit sig_sendData(g_socket_map.value(room_name),"<*06,102,00*>");
     QString data="940100";
-    my_serial->serialSend(data);
+
+        my_serial->serialSend(data);
+
+
+
 
     ui->btn_auto->setChecked(false);
     ui->btn_dry->setChecked(false);

@@ -14,7 +14,10 @@ DeviceFan::DeviceFan(int room,QWidget *parent) :
     my_Slider_btn = new SliderButton(this);
     my_Slider_btn->set_button_color(QColor(36,110,202),QColor(188,188,188),QColor(255,255,255));
     my_Slider_btn->set_button_size(30,40);
-    my_Slider_btn->move(170,15);
+    my_Slider_btn->move(50,15);
+
+
+
     connect(my_Slider_btn,SIGNAL(signal_button_off()),this,SLOT(slot_slider_OFF()));
     connect(my_Slider_btn,SIGNAL(signal_button_on()),this,SLOT(slot_slider_ON()));
 
@@ -70,4 +73,18 @@ void DeviceFan::slot_slider_OFF(void)
 
 
 
+}
+
+void DeviceFan::on_pushButton_clicked()
+{
+    //开
+    QString data="931100";
+    my_serial->serialSend(data);
+}
+
+void DeviceFan::on_pushButton_2_clicked()
+{
+    //关
+    QString data="930100";
+    my_serial->serialSend(data);
 }

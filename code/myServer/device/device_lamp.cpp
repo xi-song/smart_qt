@@ -14,7 +14,7 @@ DeviceLamp::DeviceLamp(int room,QWidget *parent) :
     my_Slider_btn = new SliderButton(this);
     my_Slider_btn->set_button_color(QColor(36,110,202),QColor(188,188,188),QColor(255,255,255));
     my_Slider_btn->set_button_size(30,40);
-    my_Slider_btn->move(170,15);
+    my_Slider_btn->move(50,15);
     connect(my_Slider_btn,SIGNAL(signal_button_off()),this,SLOT(slot_slider_OFF()));
     connect(my_Slider_btn,SIGNAL(signal_button_on()),this,SLOT(slot_slider_ON()));
 
@@ -61,4 +61,19 @@ void DeviceLamp::slot_slider_OFF(void)
     ui->label_lamp->setStyleSheet("border-image:url(:/png/light-close.png)");
     ui->label_onoff->setStyleSheet("color:rgb(40,40,40)");
     ui->label_onoff->setText("OFF");
+}
+
+void DeviceLamp::on_pushButton_clicked()
+{
+    //开
+    QString data="921100";
+    my_serial->serialSend(data);
+
+}
+
+void DeviceLamp::on_pushButton_2_clicked()
+{
+    //关
+    QString data="920100";
+    my_serial->serialSend(data);
 }
